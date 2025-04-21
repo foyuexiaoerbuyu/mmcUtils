@@ -1,0 +1,95 @@
+1.数据大屏联动
+2.加了没刷出来
+3.
+
+
+io.github.foyuexiaoerbuyu
+
+dfb260f7-4bec-42ef-bbcd-4e30730b0be8
+
+
+
+xzcH8JtC
+vzKxbENA4IGv+oWz47+B7W2pbAtJZ82M2K0HPP9eS+2l
+
+<server>
+	<id>central</id>
+	<username>xzcH8JtC</username>
+	<password>vzKxbENA4IGv+oWz47+B7W2pbAtJZ82M2K0HPP9eS+2l</password>
+</server>
+
+
+
+gpa 
+	name:maomaochong
+	mail:1950053842@qq.com
+	pwd:42@qq.com
+	
+	
+	
+	gpg --list-keys
+		D5CBA052D2072BF40745CC750F38FB9669282523
+	
+	gpg --keyserver keyserver.ubuntu.com --send-keys D5CBA052D2072BF40745CC750F38FB9669282523
+		gpg: sending key 0F38FB9669282523 to hkp://keyserver.ubuntu.com
+-----------------------------------------------------------------------------------------------------------------	
+
+Mi@DESKTOP-BO8RJTN MINGW32 ~
+$ gpg --gen-key
+gpg (GnuPG) 2.2.29-unknown; Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Note: Use "gpg --full-generate-key" for a full featured key generation dialog.
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name: maomaochong
+Email address: 1950053842@qq.com
+You selected this USER-ID:
+    "maomaochong <1950053842@qq.com>"
+
+Change (N)ame, (E)mail, or (O)kay/(Q)uit? o
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: key 0F38FB9669282523 marked as ultimately trusted
+gpg: directory '/c/Users/Mi/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/c/Users/Mi/.gnupg/openpgp-revocs.d/D5CBA052D2072BF40745CC750F38FB9669282523.rev'
+public and secret key created and signed.
+
+pub   rsa3072 2024-05-24 [SC] [expires: 2026-05-24]
+      D5CBA052D2072BF40745CC750F38FB9669282523
+uid                      maomaochong <1950053842@qq.com>
+sub   rsa3072 2024-05-24 [E] [expires: 2026-05-24]
+
+
+Mi@DESKTOP-BO8RJTN MINGW32 ~
+$ gpg --list-keys
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: next trustdb check due at 2026-05-24
+/c/Users/Mi/.gnupg/pubring.kbx
+------------------------------
+pub   rsa3072 2024-05-24 [SC] [expires: 2026-05-24]
+      D5CBA052D2072BF40745CC750F38FB9669282523
+uid           [ultimate] maomaochong <1950053842@qq.com>
+sub   rsa3072 2024-05-24 [E] [expires: 2026-05-24]
+
+Mi@DESKTOP-BO8RJTN MINGW32 ~
+$ gpg --keyserver keyserver.ubuntu.com --send-keys D5CBA052D2072BF40745CC750F38FB9669282523
+gpg: sending key 0F38FB9669282523 to hkp://keyserver.ubuntu.com
+
+Mi@DESKTOP-BO8RJTN MINGW32 ~
+$ gpg --keyserver keyserver.ubuntu.com --recv-keys D5CBA052D2072BF40745CC750F38FB9669282523
+gpg: key 0F38FB9669282523: "maomaochong <1950053842@qq.com>" not changed
+gpg: Total number processed: 1
+gpg:              unchanged: 1
+
+Mi@DESKTOP-BO8RJTN MINGW32 ~
