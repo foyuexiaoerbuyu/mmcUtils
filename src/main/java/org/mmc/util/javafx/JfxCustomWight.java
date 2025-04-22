@@ -26,9 +26,9 @@ public class JfxCustomWight {
      * 创建一个指定宽度和高度的文本框，并添加拖拽和回车事件处理。
      * 默认不启用拖拽功能。
      *
-     * @param w                   文本框的宽度
-     * @param h                   文本框的高度
-     * @param iTextFieldCallBack  文本框的回调接口，用于处理拖拽和回车事件
+     * @param w                  文本框的宽度
+     * @param h                  文本框的高度
+     * @param iTextFieldCallBack 文本框的回调接口，用于处理拖拽和回车事件
      * @return 创建好的文本框
      */
     public static TextField getTextField(int w, int h, ITextFieldCallBack iTextFieldCallBack) {
@@ -38,10 +38,10 @@ public class JfxCustomWight {
     /**
      * 创建一个指定宽度和高度的文本框，并可以选择是否启用拖拽功能，同时添加拖拽和回车事件处理。
      *
-     * @param w                   文本框的宽度
-     * @param h                   文本框的高度
-     * @param isDrag              是否启用拖拽功能
-     * @param iTextFieldCallBack  文本框的回调接口，用于处理拖拽和回车事件
+     * @param w                  文本框的宽度
+     * @param h                  文本框的高度
+     * @param isDrag             是否启用拖拽功能
+     * @param iTextFieldCallBack 文本框的回调接口，用于处理拖拽和回车事件
      * @return 创建好的文本框
      */
     public static TextField getTextField(int w, int h, boolean isDrag, ITextFieldCallBack iTextFieldCallBack) {
@@ -105,8 +105,8 @@ public class JfxCustomWight {
     /**
      * 创建一个带有点击和长按事件处理的按钮。
      *
-     * @param text            按钮上显示的文本
-     * @param iClickCallBack  按钮的回调接口，用于处理点击和长按事件
+     * @param text           按钮上显示的文本
+     * @param iClickCallBack 按钮的回调接口，用于处理点击和长按事件
      * @return 创建好的按钮
      */
     public static Button getButton(String text, IClickCallBack iClickCallBack) {
@@ -138,8 +138,8 @@ public class JfxCustomWight {
     /**
      * 创建一个带有鼠标点击事件处理的标签。
      *
-     * @param txt      标签上显示的文本
-     * @param iClick   标签的回调接口，用于处理点击事件
+     * @param txt    标签上显示的文本
+     * @param iClick 标签的回调接口，用于处理点击事件
      * @return 创建好的标签
      */
     public static Label getLabel(String txt, IClick iClick) {
@@ -168,8 +168,8 @@ public class JfxCustomWight {
     /**
      * 创建一个带有回车监听和文本选择监听的文本区域。
      *
-     * @param iTextAreaCallBack  文本区域的回调接口，用于处理回车事件
-     * @param changeListener     文本选择的更改监听器
+     * @param iTextAreaCallBack 文本区域的回调接口，用于处理回车事件
+     * @param changeListener    文本选择的更改监听器
      * @return 创建好的文本区域
      */
     public static TextArea getTextArea(ITextAreaCallBack iTextAreaCallBack, ChangeListener<String> changeListener) {
@@ -214,6 +214,13 @@ public class JfxCustomWight {
         }
     }
 
+    /**
+     * 创建菜单项
+     *
+     * @param btnName      btnName
+     * @param eventHandler eventHandler
+     * @return 创建菜单项
+     */
     public static MenuItem getMenuItem(String btnName, EventHandler<ActionEvent> eventHandler) {
         // 创建菜单项
         MenuItem clearItem1 = new MenuItem(btnName);
@@ -223,11 +230,14 @@ public class JfxCustomWight {
 
     /**
      * 是否为盘符开头
+     *
+     * @param path 路径字符串
+     * @return 是否为盘符开头
      */
-    public static boolean startsWithWindowsDrive(String str) {
-        if (str == null) return false;
+    public static boolean startsWithWindowsDrive(String path) {
+        if (path == null) return false;
         // 使用正则表达式判断字符串是否以 Windows 盘符开头
-        return str.trim().matches("^[A-Za-z]:\\\\.*");
+        return path.trim().matches("^[A-Za-z]:\\\\.*");
     }
 
     /**
@@ -235,8 +245,16 @@ public class JfxCustomWight {
      */
     public interface IClickCallBack {
 
+        /**
+         * 按钮
+         *
+         * @param btn 点击按钮
+         */
         void onClick(Button btn);
 
+        /**
+         * 长按按钮
+         */
         default void onLongClick() {
 
         }
@@ -247,15 +265,16 @@ public class JfxCustomWight {
      */
     public interface ITextFieldCallBack {
         /**
-         *
          * @param textField 文本框
-         * @param text 文本
-         * @param isFile 是否为拖拽的文件/也有可能是文件夹
+         * @param text      文本
+         * @param isFile    是否为拖拽的文件/也有可能是文件夹
          */
         void onClickEnter(TextField textField, String text, boolean isFile);
 
         /**
-         * @param isFile 是否为拖拽的文件/也有可能是文件夹
+         * @param isFile    是否为拖拽的文件/也有可能是文件夹
+         * @param textField textField
+         * @param text      text
          */
         default void onClickCtrlEnter(TextField textField, String text, boolean isFile) {
 
@@ -286,8 +305,8 @@ public class JfxCustomWight {
         /**
          * 处理长按点击事件的默认方法
          *
-         * @param obj  对象，代表长按点击事件发生的目标对象
-         * 此方法默认实现为空，子类可以根据需要提供具体实现
+         * @param obj 对象，代表长按点击事件发生的目标对象
+         *            此方法默认实现为空，子类可以根据需要提供具体实现
          */
         default void longClick(Object obj) {
             // 此处可以根据需要添加长按点击的处理逻辑
@@ -369,6 +388,12 @@ public class JfxCustomWight {
      */
     @FunctionalInterface
     public interface ComboBoxSelectionHandler<T> {
+        /**
+         * 处理选择事件
+         *
+         * @param index    选中的索引
+         * @param comboBox 下拉选项
+         */
         void handleSelection(int index, ComboBox<T> comboBox);
     }
 

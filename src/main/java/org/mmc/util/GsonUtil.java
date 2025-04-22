@@ -5,11 +5,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * json工具类
  */
 public class GsonUtil {
 
@@ -328,8 +329,30 @@ public class GsonUtil {
         return gson.fromJson(json, clazz);
     }
 
+
     /**
      * 将 JSON 字符串转换为 Map
+     * 将 JSON 字符串转换为 Map
+     * Map(String, Object) map = GsonUtils.jsonToMap(jsonString, String.class, Object.class);
+     *
+     * @param jsonString JSON 字符串
+     * @param keyClass   keyClass
+     * @param valueClass valueClass
+     * @param <K>        K
+     * @param <V>        V
+     * @return 转换后的 Map
+     */
+    public static <K, V> Map<K, V> jsonToMap(String jsonString, Class<K> keyClass, Class<V> valueClass) {
+        if (jsonString == null) {
+            return new HashMap<>();
+        }
+        Gson gson = new Gson();
+        Type type = TypeToken.getParameterized(Map.class, keyClass, valueClass).getType();
+        return gson.fromJson(jsonString, type);
+    }
+
+    /**
+     * 获取泛型类型的 Type 对象
      *
      * @param clazz 目标对象的类
      * @return 转换后的 Map

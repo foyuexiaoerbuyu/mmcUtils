@@ -189,9 +189,9 @@ public class StringUtil {
      * 去掉所有空格
      *
      * @param str
-     * @return
+     * @return 去所有空格
      */
-    public static String trim(String str) {
+    public static String replaceSpaces(String str) {
         if (str == null) {
             return "";
         }

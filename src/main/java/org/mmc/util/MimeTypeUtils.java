@@ -7,45 +7,45 @@ package org.mmc.util;
  * @author 29975
  */
 public class MimeTypeUtils {
-    // 定义 PNG 图片的媒体类型
+    /** 定义 PNG 图片的媒体类型*/
     public static final String IMAGE_PNG = "image/png";
-    // 定义 JPG 图片的媒体类型
+    /** 定义 JPG 图片的媒体类型*/
     public static final String IMAGE_JPG = "image/jpg";
-    // 定义 JPEG 图片的媒体类型
+    /** 定义 JPEG 图片的媒体类型*/
     public static final String IMAGE_JPEG = "image/jpeg";
-    // 定义 BMP 图片的媒体类型
+    /** 定义 BMP 图片的媒体类型*/
     public static final String IMAGE_BMP = "image/bmp";
-    // 定义 GIF 图片的媒体类型
+    /** 定义 GIF 图片的媒体类型*/
     public static final String IMAGE_GIF = "image/gif";
-    // 定义 PDF 文档的媒体类型
+    /** 定义 PDF 文档的媒体类型*/
     public static final String DOCUMENT_PDF = "application/pdf";
-    // 定义 DOC 文档的媒体类型
+    /** 定义 DOC 文档的媒体类型*/
     public static final String DOCUMENT_DOC = "application/msword";
-    // 定义 DOCX 文档的媒体类型
+    /** 定义 DOCX 文档的媒体类型*/
     public static final String DOCUMENT_DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-    // 定义 XLS 文档的媒体类型
+    /** 定义 XLS 文档的媒体类型*/
     public static final String DOCUMENT_XLS = "application/vnd.ms-excel";
-    // 定义 XLSX 文档的媒体类型
+    /** 定义 XLSX 文档的媒体类型*/
     public static final String DOCUMENT_XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-    // 定义 PPT 文档的媒体类型
+    /** 定义 PPT 文档的媒体类型*/
     public static final String DOCUMENT_PPT = "application/vnd.ms-powerpoint";
-    // 定义 PPTX 文档的媒体类型
+    /** 定义 PPTX 文档的媒体类型*/
     public static final String DOCUMENT_PPTX = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-    // 定义通用应用文件的媒体类型
+    /** 定义通用应用文件的媒体类型*/
     public static final String APPLICATION_FILE = "application/octet-stream";
-    // 定义电子邮件的媒体类型
+    /** 定义电子邮件的媒体类型*/
     public static final String EMAIL = "message/rfc822";
 
-    // 定义图片文件扩展名数组
+    /** 定义图片文件扩展名数组*/
     public static final String[] IMAGE_EXTENSION = {"bmp", "gif", "jpg", "jpeg", "png"};
-    // 定义 Flash 文件扩展名数组
+    /** 定义 Flash 文件扩展名数组*/
     public static final String[] FLASH_EXTENSION = {"swf", "flv"};
-    // 定义媒体文件扩展名数组
+    /** 定义媒体文件扩展名数组*/
     public static final String[] MEDIA_EXTENSION = {"swf", "flv", "mp3", "wav", "wma", "wmv", "mid", "avi", "mpg",
             "asf", "rm", "rmvb"};
-    // 定义视频文件扩展名数组
+    /** 定义视频文件扩展名数组*/
     public static final String[] VIDEO_EXTENSION = {"mp4", "avi", "rmvb"};
-    // 定义默认允许的文件扩展名数组
+    /** 定义默认允许的文件扩展名数组*/
     public static final String[] DEFAULT_ALLOWED_EXTENSION = {
             // 图片
             "bmp", "gif", "jpg", "jpeg", "png",

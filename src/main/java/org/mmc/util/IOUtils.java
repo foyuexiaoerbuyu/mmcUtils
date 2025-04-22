@@ -9,7 +9,9 @@ import java.io.IOException;
 public class IOUtils {
 
     /**
+     *
      * Close closeable object 关闭可以关闭的对象
+     * @param closeable closeable
      */
     public static void close(Closeable closeable) {
         if (closeable != null) {

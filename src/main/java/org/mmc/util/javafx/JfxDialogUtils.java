@@ -214,7 +214,6 @@ public class JfxDialogUtils {
      * @return 生成的二维码图片
      */
     private static Image generateQRCodeImage(String text) {
-        // TODO: 2023/10/13
         //使用qrgen库生成二维码
 //        byte[] qrCodeBytes = QRCode.from(text).to(ImageType.PNG).stream().toByteArray();
 //        return new Image(new ByteArrayInputStream(qrCodeBytes));

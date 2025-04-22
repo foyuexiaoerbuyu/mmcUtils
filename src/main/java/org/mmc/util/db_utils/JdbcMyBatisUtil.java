@@ -472,7 +472,15 @@ public class JdbcMyBatisUtil<T> {
         return resultList;
     }
 
-
+    /**
+     *  sql语句转Javabean
+     *
+     * @param conn 连接
+     * @param sqlStatements sql语句
+     * @param tClass 转换类
+     * @param isCamel 是否驼峰
+     * @return
+     */
     public List<T> executeSql2Ben(Connection conn, String sqlStatements, Class<T> tClass, boolean isCamel) {
 
         if (conn != null) {
@@ -499,7 +507,7 @@ public class JdbcMyBatisUtil<T> {
     }
 
     /**
-     * 生成java 实体
+     * 生成java 实体文件
      */
     public void creatJavaBenFile(Connection conn, String tableName) {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("select * from " + tableName);) {
@@ -542,10 +550,10 @@ public class JdbcMyBatisUtil<T> {
 
 
     /**
-     * @param sql
+     * @param sql sql
      * @param rowMapper 传实体 然后设置对应的字段
-     * @param <T>
-     * @return
+     * @param <T> 泛型
+     * @return 结果集
      */
     public static <T> List<T> executeQuery(Connection conn, String sql, RowMapper<T> rowMapper) {
 
@@ -571,19 +579,26 @@ public class JdbcMyBatisUtil<T> {
         }
         return result;
     }
-
+    /**
+     * 映射结果集到实体的接口
+     * @param <T> 实体类型
+     */
     public interface RowMapper<T> {
+        /**
+         *
+         * 将结果集映射到实体
+         * @param resultSet resultSet
+         * @return 实体
+         * @throws SQLException SQLException
+         */
         T mapRow(ResultSet resultSet) throws SQLException;
     }
 
 
     /**
      * 生成建表语句(导出已有数据库表结构,导出数据库表结构,导出表结构)
-     * String URL = "jdbc:mysql://localhost:3306/test"; // 数据库URL
-     * String USER = "root"; // 数据库用户名
-     * String PASSWORD = "root"; // 数据库密码
-     * String tableName = "projects"; // 要导出的表名
      *
+     * @param connection connection
      * @param tableName 表名
      * @return 建表语句
      */

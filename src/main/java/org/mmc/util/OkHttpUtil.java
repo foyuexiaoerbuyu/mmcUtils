@@ -31,10 +31,9 @@ public class OkHttpUtil {
 
 
     /**
-     *
      * GET请求
      *
-     * @param url 请求URL
+     * @param url       请求URL
      * @param iCallBack 回调接口
      */
     public static void get(String url, ICallBack iCallBack) {
@@ -72,7 +71,8 @@ public class OkHttpUtil {
     /**
      * GET请求
      *
-     * @param url 请求URL
+     * @param url     请求URL
+     * @param headers headers
      * @return 响应体字符串
      * @throws IOException 请求或响应过程中发生的错误
      */
@@ -89,7 +89,9 @@ public class OkHttpUtil {
     /**
      * GET请求
      *
-     * @param url 请求URL
+     * @param url       请求URL
+     * @param headers   headers
+     * @param iCallBack iCallBack
      */
     public static void get(String url, HashMap<String, String> headers, ICallBack iCallBack) {
         Request.Builder builder = new Request.Builder();
@@ -141,11 +143,13 @@ public class OkHttpUtil {
     }
 
     /**
+     *
      * POST请求
      *
      * @param url         请求URL
      * @param requestBody 请求体
      * @param headers     请求头
+     * @param iCallBack iCallBack
      */
     public static void post(String url, RequestBody requestBody, Map<String, String> headers, ICallBack iCallBack) {
         Request.Builder builder = new Request.Builder();
@@ -181,6 +185,11 @@ public class OkHttpUtil {
         return RequestBody.create(MediaType.parse("application/json"), jsonStr);
     }
 
+    /**
+     * 构造JSON请求体
+     * @param jsonStr jsonStr
+     * @return 请求体
+     */
     public static RequestBody buildJsonRequestBody(Object jsonStr) {
         return RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(jsonStr));
     }
@@ -230,6 +239,7 @@ public class OkHttpUtil {
     /**
      * 构造Multipart请求体，上传文件
      *
+     * @param file file
      * @return Multipart请求体
      */
     public static RequestBody buildMultipartRequestBodyWithFile(File file) {
@@ -276,6 +286,7 @@ public class OkHttpUtil {
      * @param url     请求URL
      * @param file    上传的文件
      * @param headers 请求头
+     * @param iCallBack iCallBack
      * @throws IOException 请求或响应过程中发生的错误
      */
     public static void uploadFile(String url, UploadFile file, Map<String, String> headers, ICallBack iCallBack) throws IOException {
@@ -336,8 +347,6 @@ public class OkHttpUtil {
         void onDownloadFailed(Exception e);
     }
 
-    public static int index;
-
     /**
      * https://www.jianshu.com/p/3b269082cbbb
      *
@@ -362,7 +371,7 @@ public class OkHttpUtil {
                 int len = 0;
                 FileOutputStream fos = null;
                 // 储存下载文件的目录
-                String savePath = isExistDir(saveDir);
+                String savePath = mkdirs(saveDir);
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
@@ -398,11 +407,11 @@ public class OkHttpUtil {
     }
 
     /**
-     * @param saveDir
-     * @return
+     * @param saveDir saveDir
+     * @return 创建文件夹路径
      * @throws IOException 判断下载目录是否存在
      */
-    private static String isExistDir(String saveDir) throws IOException {
+    private static String mkdirs(String saveDir) throws IOException {
         // 下载位置
         File downloadFile = new File(saveDir);
         if (!downloadFile.mkdirs()) {

@@ -31,7 +31,9 @@ import java.util.List;
  */
 public class JswJListClickHandler<E> {
 
-    // 定义回调接口，包含单击、双击和右键事件处理方法
+    /**
+     * 定义回调接口，包含单击、双击和右键事件处理方法
+     */
     public interface JListClickCallback<E> {
         /**
          * 处理 JList 中元素的单击事件
@@ -59,7 +61,7 @@ public class JswJListClickHandler<E> {
         void onRightClick(MouseEvent e, int index, E item);
     }
 
-    // 定义仅处理单击事件的回调接口
+    /**定义仅处理单击事件的回调接口*/
     public interface singleClick<E> {
         /**
          * 处理 JList 中元素的单击事件
@@ -70,9 +72,9 @@ public class JswJListClickHandler<E> {
         void onSingleClick(int index, E item);
     }
 
-    // 用于区分单击和双击的定时器
+    /** 用于区分单击和双击的定时器*/
     private final Timer clickTimer;
-    // 记录当前点击的元素索引
+    /** 记录当前点击的元素索引*/
     private int clickedIndex = -1;
 
     /**
@@ -225,6 +227,7 @@ public class JswJListClickHandler<E> {
      * @param jlist     要处理事件的 JList 对象
      * @param listModel JList 使用的列表模型
      * @param callback  单击事件处理回调接口的实现
+     * @param <E>       泛型
      */
     public static <E> void singleClick(JList<E> jlist, DefaultListModel<E> listModel, singleClick<E> callback) {
         // 为 JList 添加鼠标监听器

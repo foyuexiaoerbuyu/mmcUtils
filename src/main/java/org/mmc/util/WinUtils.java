@@ -338,15 +338,6 @@ public class WinUtils {
 
     /**
      * 根据剪切板生成文件
-     */
-    public static void sysClipboardTextToFile() {
-        String copyToDirPath = WinUtils.getUserHomeDir() + File.separator + "tmp_copy_file_dir_2025301082620" + File.separator;
-        FileUtils.createDir(copyToDirPath);
-        sysClipboardTextToFile(copyToDirPath);
-    }
-
-    /**
-     * 根据剪切板生成文件
      *
      * @param fileDir 生成文件所在文件夹
      */

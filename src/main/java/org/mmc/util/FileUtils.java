@@ -1636,9 +1636,7 @@ public class FileUtils {
 
         try {
             readNovelTextFileEx(filePath, encode, callback);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -1736,8 +1734,9 @@ public class FileUtils {
      * @param filePath 文件连接
      * @param encode   编码  StandardCharsets.UTF_8  FileUtils.ENCODING_GBK FileUtils.ENCODING_UTF_8
      * @param callback 回调
+     * @throws Exception 如果文件读取失败
      */
-    public static void readNovelTextFileEx(String filePath, String encode, ChapterCallback callback) throws IOException, SQLException {
+    public static void readNovelTextFileEx(String filePath, String encode, ChapterCallback callback) throws Exception {
         if (encode == null || encode.isEmpty()) {
             encode = "UTF-8";
         }
@@ -2259,6 +2258,9 @@ public class FileUtils {
 
     /**
      * 响应内容类型
+     *
+     * @param fileName 文件名
+     * @return 响应内容类型
      */
     public static String getContentType(String fileName) {
         if (fileName.endsWith(".txt")) {
@@ -2295,6 +2297,10 @@ public class FileUtils {
 
     /**
      * 转换文件编码格式
+     *
+     * @param inputFile  inputFile
+     * @param outputFile outputFile
+     * @throws IOException ioexception
      */
     private static void convertFileEncoding(File inputFile, File outputFile) throws IOException {
         Charset sourceCharset = Charset.forName("GB2312");
@@ -2348,6 +2354,7 @@ public class FileUtils {
      * @param position 文件中开始读取的位置
      * @param length   读取的字节数
      * @param charset  StandardCharsets.UTF_8; // 字符编码格式  UTF-8
+     * @return 读取的字符串
      */
     public static String readTopContent(String filePath, long position, int length, Charset charset) {
 
@@ -2381,12 +2388,14 @@ public class FileUtils {
     private static final int BUFFER_SIZE = 1024;
 
     /**
+     *
      * 多线程读取文件，转换文件编码格式 4线程 1Mb缓存
      *
      * @param inputFile     输入文件 String input = "E:/02code/web/test.txt";
      * @param sourceCharset 源文件编码 String output = "E:/02code/web/tes1t.txt";
      * @param outputFile    输出文件 String sourceCharset = "GBK";
      * @param targetCharset 目标文件编码 String targetCharset = "UTF-8";
+     * @throws IOException io
      */
     public static void conversionFileEncodingFormat(File inputFile, String sourceCharset, File outputFile, String targetCharset) throws Exception {
         long fileSize = inputFile.length();
@@ -2476,6 +2485,7 @@ public class FileUtils {
     public static Path getFolderPath(String folderName) {
         return Paths.get(System.getProperty("user.home"), folderName);
     }
+
     /**
      * 获取用户的桌面路径
      *
@@ -2520,6 +2530,7 @@ public class FileUtils {
     public static String getMusic() {
         return Paths.get(System.getProperty("user.home"), "Music").toString() + "/";
     }
+
     /**
      * 复制一个文件夹下的所有文件及文件夹到到目标位置(不包括根目录)。
      *

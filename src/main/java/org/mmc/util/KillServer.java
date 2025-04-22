@@ -15,6 +15,11 @@ import java.util.regex.Pattern;
 public class KillServer {
     private Set<?> ports;
 
+    /**
+     * 主方法
+     * @param args args
+     * @throws InterruptedException InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
         // 输入逻辑
         System.out.println("请输入需要kill的进程端口号，如果有多个以逗号分隔:");

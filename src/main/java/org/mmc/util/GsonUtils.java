@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/src/main/java/com/blankj/utilcode/util/GsonUtils.java
- *
+ * <p>
  * Gson工具类，用于提供线程安全的Gson实例
  * <pre>
  *     author: Blankj
@@ -142,6 +142,7 @@ public final class GsonUtils {
      *
      * @param json The json to convert.
      * @param type Type json will be converted to.
+     * @param <T>  泛型
      * @return instance of type
      */
     public static <T> T fromJson(final String json, @NonNull final Class<T> type) {
@@ -153,6 +154,7 @@ public final class GsonUtils {
      *
      * @param json the json to convert.
      * @param type type type json will be converted to.
+     * @param <T>  泛型
      * @return instance of type
      */
     public static <T> T fromJson(final String json, @NonNull final Type type) {
@@ -164,6 +166,7 @@ public final class GsonUtils {
      *
      * @param reader the reader to convert.
      * @param type   type type json will be converted to.
+     * @param <T>    泛型
      * @return instance of type
      */
     public static <T> T fromJson(@NonNull final Reader reader, @NonNull final Class<T> type) {
@@ -175,6 +178,7 @@ public final class GsonUtils {
      *
      * @param reader the reader to convert.
      * @param type   type type json will be converted to.
+     * @param <T>    泛型
      * @return instance of type
      */
     public static <T> T fromJson(@NonNull final Reader reader, @NonNull final Type type) {
@@ -187,6 +191,7 @@ public final class GsonUtils {
      * @param gson The gson.
      * @param json The json to convert.
      * @param type Type json will be converted to.
+     * @param <T>  泛型
      * @return instance of type
      */
     public static <T> T fromJson(@NonNull final Gson gson, final String json, @NonNull final Class<T> type) {
@@ -199,6 +204,7 @@ public final class GsonUtils {
      * @param gson The gson.
      * @param json the json to convert.
      * @param type type type json will be converted to.
+     * @param <T>  泛型
      * @return instance of type
      */
     public static <T> T fromJson(@NonNull final Gson gson, final String json, @NonNull final Type type) {
@@ -211,6 +217,7 @@ public final class GsonUtils {
      * @param gson   The gson.
      * @param reader the reader to convert.
      * @param type   type type json will be converted to.
+     * @param <T>    泛型
      * @return instance of type
      */
     public static <T> T fromJson(@NonNull final Gson gson, final Reader reader, @NonNull final Class<T> type) {
@@ -223,6 +230,7 @@ public final class GsonUtils {
      * @param gson   The gson.
      * @param reader the reader to convert.
      * @param type   type type json will be converted to.
+     * @param <T>    泛型
      * @return instance of type
      */
     public static <T> T fromJson(@NonNull final Gson gson, final Reader reader, @NonNull final Type type) {

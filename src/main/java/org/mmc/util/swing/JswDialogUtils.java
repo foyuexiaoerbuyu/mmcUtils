@@ -688,7 +688,6 @@ public class JswDialogUtils {
      *
      * @param iClick            处理按钮点击事件的接口实例
      * @param radioButtonLabels 按钮的标签数组
-     *
      */
     public static void showBtnsDialog(IClick iClick, String... radioButtonLabels) {
         JButton[] jButtons = new JButton[radioButtonLabels.length];
@@ -808,7 +807,9 @@ public class JswDialogUtils {
      * 定义一个接口，用于处理用户点击确定按钮的操作。
      */
     public interface IOkClick {
-        // 点击确定按钮后执行的抽象方法
+        /**
+         * 点击确定按钮后执行的抽象方法
+         */
         public abstract void ok();
     }
 

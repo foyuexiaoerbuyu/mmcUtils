@@ -24,7 +24,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * 自定义控件类，提供了多种自定义的Swing控件创建方法
  * 包含编辑框、多行编辑框、滚动面板等控件的创建，同时支持拖拽文件功能
  * 还提供了禁用文本区域编辑功能的相关方法说明
- *
  */
 public class JswCustomWight {
 
@@ -61,12 +60,12 @@ public class JswCustomWight {
      * 创建一个指定位置、大小、初始文本和提示文本的编辑框
      * 当编辑框获得焦点时，如果显示的是提示文本，则清空；失去焦点时，如果文本为空，则显示提示文本
      *
-     * @param x         编辑框的x坐标
-     * @param y         编辑框的y坐标
-     * @param w         编辑框的宽度
-     * @param h         编辑框的高度
-     * @param text      编辑框的初始文本
-     * @param hintText  编辑框的提示文本
+     * @param x        编辑框的x坐标
+     * @param y        编辑框的y坐标
+     * @param w        编辑框的宽度
+     * @param h        编辑框的高度
+     * @param text     编辑框的初始文本
+     * @param hintText 编辑框的提示文本
      * @return 一个JTextField对象
      */
     public static JTextField getJTextField(int x, int y, int w, int h, String text, String hintText) {
@@ -101,12 +100,12 @@ public class JswCustomWight {
      * 创建一个指定位置、大小、初始文本和监听器的编辑框
      * 支持监听编辑框的动作事件和焦点事件
      *
-     * @param x                  编辑框的x坐标
-     * @param y                  编辑框的y坐标
-     * @param w                  编辑框的宽度
-     * @param h                  编辑框的高度
-     * @param text               编辑框的初始文本
-     * @param ijTextFieldLinser  编辑框的监听器
+     * @param x                 编辑框的x坐标
+     * @param y                 编辑框的y坐标
+     * @param w                 编辑框的宽度
+     * @param h                 编辑框的高度
+     * @param text              编辑框的初始文本
+     * @param ijTextFieldLinser 编辑框的监听器
      * @return 一个JTextField对象
      */
     public static JTextField getJTextField(int x, int y, int w, int h, String text, IJTextFieldListener ijTextFieldLinser) {
@@ -223,11 +222,11 @@ public class JswCustomWight {
      * 创建一个指定位置、大小、初始文本和鼠标监听器的多行编辑框
      * 支持自动换行，并可以监听鼠标事件
      *
-     * @param x           多行编辑框的x坐标
-     * @param y           多行编辑框的y坐标
-     * @param w           多行编辑框的宽度
-     * @param h           多行编辑框的高度
-     * @param text        多行编辑框的初始文本
+     * @param x            多行编辑框的x坐标
+     * @param y            多行编辑框的y坐标
+     * @param w            多行编辑框的宽度
+     * @param h            多行编辑框的高度
+     * @param text         多行编辑框的初始文本
      * @param mouseAdapter 鼠标监听器
      * @return 一个JTextArea对象
      */
@@ -243,10 +242,10 @@ public class JswCustomWight {
      * 创建一个指定位置、大小和拖拽文件回调的多行编辑框
      * 支持拖拽文件到编辑框，将文件路径显示在编辑框中，并触发回调
      *
-     * @param x            多行编辑框的x坐标
-     * @param y            多行编辑框的y坐标
-     * @param w            多行编辑框的宽度
-     * @param h            多行编辑框的高度
+     * @param x             多行编辑框的x坐标
+     * @param y             多行编辑框的y坐标
+     * @param w             多行编辑框的宽度
+     * @param h             多行编辑框的高度
      * @param iDragCallBack 拖拽文件回调接口
      * @return 一个JTextArea对象
      */
@@ -320,10 +319,10 @@ public class JswCustomWight {
     /**
      * 创建一个指定位置、大小和拖拽文件回调的编辑框
      *
-     * @param x            编辑框的x坐标
-     * @param y            编辑框的y坐标
-     * @param w            编辑框的宽度
-     * @param h            编辑框的高度
+     * @param x             编辑框的x坐标
+     * @param y             编辑框的y坐标
+     * @param w             编辑框的宽度
+     * @param h             编辑框的高度
      * @param iDragCallBack 拖拽文件回调接口
      * @return 一个JTextField对象
      */
@@ -335,11 +334,11 @@ public class JswCustomWight {
      * 创建一个指定位置、大小、初始文本和拖拽文件回调的编辑框
      * 支持拖拽文件到编辑框，将文件路径显示在编辑框中，并触发回调
      *
-     * @param x            编辑框的x坐标
-     * @param y            编辑框的y坐标
-     * @param w            编辑框的宽度
-     * @param h            编辑框的高度
-     * @param text         编辑框的初始文本
+     * @param x             编辑框的x坐标
+     * @param y             编辑框的y坐标
+     * @param w             编辑框的宽度
+     * @param h             编辑框的高度
+     * @param text          编辑框的初始文本
      * @param iDragCallBack 拖拽文件回调接口
      * @return 一个JTextField对象
      */
@@ -393,6 +392,14 @@ public class JswCustomWight {
 
     /**
      * 文本
+     *
+     * @param x                      编辑框的x坐标
+     * @param y                      编辑框的y坐标
+     * @param w                      编辑框的宽度
+     * @param h                      编辑框的高度
+     * @param text                   文本
+     * @param iFileDropLabelCallBack 回调
+     * @return JLabel
      */
     public static JLabel getFileDropLabel(int x, int y, int w, int h,
                                           String text, JswFileDropLabel.IFileDropLabelCallBack iFileDropLabelCallBack) {
@@ -407,6 +414,13 @@ public class JswCustomWight {
 
     /**
      * 文本
+     *
+     * @param x    编辑框的x坐标
+     * @param y    编辑框的y坐标
+     * @param w    编辑框的宽度
+     * @param h    编辑框的高度
+     * @param text 文本
+     * @return JLabel
      */
     public static JLabel getJLabel(int x, int y, int w, int h, String text) {
         JLabel label = new JLabel(text);
@@ -416,6 +430,13 @@ public class JswCustomWight {
 
     /**
      * 文本
+     *
+     * @param x    编辑框的x坐标
+     * @param y    编辑框的y坐标
+     * @param w    编辑框的宽度
+     * @param h    编辑框的高度
+     * @param text 文本
+     * @return JLabel
      */
     public static JLabel getJLabel(int x, int y, int w, int h, String text, JswOnLongClickListener onLongClickListener) {
         JLabel label = new JLabel(text);
@@ -426,6 +447,11 @@ public class JswCustomWight {
 
     /**
      * 文本
+     *
+     * @param w    编辑框的宽度
+     * @param h    编辑框的高度
+     * @param text 文本
+     * @return JLabel
      */
     public static JLabel getJLabel(int w, int h, String text) {
         JLabel label = new JLabel(text);
@@ -435,6 +461,11 @@ public class JswCustomWight {
 
     /**
      * 文本
+     *
+     * @param w    编辑框的宽度
+     * @param h    编辑框的高度
+     * @param text 文本
+     * @return JLabel
      */
     public static JLabel getJLabel(int w, int h, String text, JswOnLongClickListener onLongClickListener) {
         JLabel label = new JLabel(text);
@@ -445,6 +476,10 @@ public class JswCustomWight {
 
     /**
      * 按钮
+     *
+     * @param text           按钮文字
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     public static JButton getJButton(String text, ActionListener actionListener) {
         JButton label = new JButton(text);
@@ -456,6 +491,12 @@ public class JswCustomWight {
 
     /**
      * 设置固定宽高按钮
+     *
+     * @param text           按钮文字
+     * @param width          width
+     * @param height         height
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     public static JButton getJButton(String text, int width, int height, ActionListener actionListener) {
         JButton button = new JButton(text);
@@ -466,6 +507,11 @@ public class JswCustomWight {
 
     /**
      * 按钮
+     *
+     * @param text           文字
+     * @param tip            提示
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     public static JButton getJButton(String text, String tip, ActionListener actionListener) {
         JButton label = new JButton(text);
@@ -478,11 +524,21 @@ public class JswCustomWight {
 
     /**
      * 按钮
+     *
+     * @param text           文字
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     public static JButton getJButtonMargin(String text, ActionListener actionListener) {
         return getJButtonMargin(text, null, actionListener);
     }
 
+    /**
+     * @param text           文字
+     * @param tip            提示
+     * @param actionListener 点击回调
+     * @return 按钮
+     */
     public static JButton getJButtonMargin(String text, String tip, ActionListener actionListener) {
         JButton label = new JButton(text);
         label.setToolTipText(tip);
@@ -490,6 +546,11 @@ public class JswCustomWight {
         return label;
     }
 
+    /**
+     * @param text           文字
+     * @param actionListener 点击回调
+     * @return 按钮
+     */
     @Deprecated
     public static JButton getJButtonMargin(String text, JswOnLongClickListener actionListener) {
         JButton jButton = new JButton(text);
@@ -499,6 +560,13 @@ public class JswCustomWight {
         return jButton;
     }
 
+    /**
+     * @param text           文字
+     * @param actionListener 点击回调
+     * @param text           text
+     * @param actionListener actionListener
+     * @return 按钮
+     */
     @Deprecated
     public static JButton getJButtonMargin(String text, String tipText, JswOnLongClickListener actionListener) {
         JButton jButton = new JButton(text);
@@ -511,6 +579,10 @@ public class JswCustomWight {
 
     /**
      * 长按按钮
+     *
+     * @param text           文字
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     @Deprecated
     public static JButton getJButton(String text, JswOnLongClickListener actionListener) {
@@ -523,6 +595,14 @@ public class JswCustomWight {
 
     /**
      * 按钮
+     *
+     * @param x              x
+     * @param y              y
+     * @param w              w
+     * @param h              h
+     * @param text           text
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     @Deprecated
     public static JButton getJButton(int x, int y, int w, int h, String text, ActionListener actionListener) {
@@ -535,6 +615,15 @@ public class JswCustomWight {
 
     /**
      * 按钮
+     *
+     * @param x              x
+     * @param y              y
+     * @param w              w
+     * @param h              h
+     * @param text           text
+     * @param tip            tip
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     public static JButton getJButton(int x, int y, int w, int h, String text, String tip, ActionListener actionListener) {
         JButton label = getJButton(x, y, w, h, text, actionListener);
@@ -544,6 +633,14 @@ public class JswCustomWight {
 
     /**
      * 按钮 长按监听
+     *
+     * @param x              x
+     * @param y              y
+     * @param w              w
+     * @param h              h
+     * @param text           text
+     * @param actionListener 点击回调
+     * @return 按钮
      */
     public static JButton getJButton(int x, int y, int w, int h, String text, JswOnLongClickListener actionListener) {
         JButton label = new JButton(text);
@@ -555,6 +652,12 @@ public class JswCustomWight {
 
     /**
      * 下拉选项
+     *
+     * @param x x
+     * @param y y
+     * @param w w
+     * @param h h
+     * @return 下拉框
      */
     public static JComboBox<String> getJComboBox(int x, int y, int w, int h) {
         return getJComboBox(x, y, w, h, null, null);
@@ -564,6 +667,11 @@ public class JswCustomWight {
      * 下拉选项
      *
      * @param items key:命令, val:名称
+     * @param x     x
+     * @param y     y
+     * @param w     w
+     * @param h     h
+     * @return 下拉框
      */
     public static JComboBox<String> getJComboBox(int x, int y, int w, int h, List<String> items) {
         return getJComboBox(x, y, w, h, items, null);
@@ -573,6 +681,12 @@ public class JswCustomWight {
      * 下拉选项
      *
      * @param items key:命令, val:名称
+     * @param items items
+     * @param x     x
+     * @param y     y
+     * @param w     w
+     * @param h     h
+     * @return 下拉框
      */
     public static JComboBox<String> getJComboBox(int x, int y, int w, int h, List<String> items, ActionListener itemListener) {
         JComboBox<String> jComboBox = new JComboBox<>();
@@ -587,12 +701,24 @@ public class JswCustomWight {
         return jComboBox;
     }
 
+    /**
+     * 多行编辑框
+     *
+     * @param text text
+     * @return 多行编辑框
+     */
     public static JTextArea getJTextArea(String text) {
         JTextArea liftTextArea = new JTextArea(text);
         liftTextArea.setLineWrap(true);
         return liftTextArea;
     }
 
+
+    /**
+     * 多行编辑框
+     *
+     * @return 多行编辑框
+     */
     public static JTextArea getJTextArea() {
         JTextArea liftTextArea = new JTextArea();
         liftTextArea.setLineWrap(true);
@@ -603,13 +729,22 @@ public class JswCustomWight {
      * 下拉列表回调
      */
     public interface JComboBoxClickCallBack {
+        /**
+         * 点击回调
+         * @param jComboBox jComboBox
+         * @param e e
+         * @param selectedIndex selectedIndex
+         * @param item item
+         */
         void click(JComboBox<String> jComboBox, ActionEvent e, int selectedIndex, String item);
     }
 
     /**
      * 下拉选项
      *
-     * @param items key:命令, val:名称
+     * @param items                  key:命令, val:名称
+     * @param jComboBoxClickCallBack jComboBoxClickCallBack
+     * @return JComboBox JComboBox
      */
     public static JComboBox<String> getJComboBox(List<String> items, JComboBoxClickCallBack jComboBoxClickCallBack) {
         JComboBox<String> jComboBox = new JComboBox<>();
@@ -633,7 +768,13 @@ public class JswCustomWight {
     /**
      * 下拉选项
      *
-     * @param items key:命令, val:名称
+     * @param items              key:命令, val:名称
+     * @param x                  x
+     * @param y                  y
+     * @param w                  w
+     * @param h                  h
+     * @param ijComboBoxListener ijComboBoxListener
+     * @return JComboBox
      */
     public static JComboBox<String> getJComboBoxEdit(int x, int y, int w, int h, List<String> items, IJComboBoxListener ijComboBoxListener) {
         JComboBox<String> jComboBox = new JComboBox<>();
@@ -686,6 +827,7 @@ public class JswCustomWight {
     /**
      * JLabel自动换行
      *
+     * @param jLabel  jLabel
      * @param content 内容
      */
     public static void JlabelSetText(JLabel jLabel, String content) {
@@ -712,6 +854,15 @@ public class JswCustomWight {
         jLabel.setText(builder.toString());
     }
 
+    /**
+     * @param x              x
+     * @param y              y
+     * @param w              w
+     * @param h              h
+     * @param btnName        btnName
+     * @param actionListener actionListener
+     * @return 复选框
+     */
     public static JCheckBox getJCheckBox(int x, int y, int w, int h, String btnName, ActionListener actionListener) {
         JCheckBox checkBox = new JCheckBox(btnName);
         checkBox.setBounds(x, y, w, h);
@@ -723,6 +874,12 @@ public class JswCustomWight {
         return checkBox;
     }
 
+    /**
+     * @param actionListener actionListener
+     * @param btnName        文字
+     * @return 复选框
+     * @return 复选框
+     */
     public static JCheckBox getJCheckBox(String btnName, ActionListener actionListener) {
         JCheckBox checkBox = new JCheckBox(btnName);
         checkBox.addActionListener(actionListener);
@@ -733,6 +890,13 @@ public class JswCustomWight {
         return checkBox;
     }
 
+    /**
+     * @param x x
+     * @param y y
+     * @param w w
+     * @param h h
+     * @return JPanel
+     */
     public static JPanel getFlowLayout(int x, int y, int w, int h) {
         JPanel otherJPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         otherJPanel.setBounds(x, y, w, h);
@@ -748,9 +912,15 @@ public class JswCustomWight {
     }
 
     /**
-     * 开关按钮
+     * 创建一个JToggleButton
+     *
+     * @param open   open
+     * @param close  close
+     * @param width  width
+     * @param height height
+     * @return JToggleButton
      */
-    public static JToggleButton getJToggleButton(String open, String close, int width, int height) {   // 创建一个JToggleButton
+    public static JToggleButton getJToggleButton(String open, String close, int width, int height) {
         JToggleButton toggleButton = new JToggleButton(close, false);
         if (width > 0 && height > 0) {
             // 设置按钮的宽高
@@ -778,44 +948,90 @@ public class JswCustomWight {
      * 拖拽回调
      */
     public interface IDragCallBack {
+        /**
+         * @param path path
+         */
         void dragCallBack(String path);
     }
 
+    /**
+     * 文本框回调
+     */
     public interface IJTextFieldListener {
-        /*获取焦点*/
+
+        /**
+         * 获取焦点
+         *
+         * @param jTextField jTextField
+         */
         void focusGained(JTextField jTextField);
 
-        /*失去焦点*/
+        /**
+         * 失去焦点
+         *
+         * @param jTextField jTextField
+         */
         void focusLost(JTextField jTextField);
 
+        /**
+         * 按下回车
+         *
+         * @param e          e
+         * @param jTextField jTextField
+         */
         void actionPerformed(ActionEvent e, JTextField jTextField);
     }
 
+    /**
+     * 组合框回调
+     */
     public interface IJComboBoxListener {
 
+        /**
+         * 按下回车
+         *
+         * @param keyEvent     keyEvent
+         * @param jComboBox    jComboBox
+         * @param selectedItem selectedItem
+         */
         default void enter(KeyEvent keyEvent, JComboBox<String> jComboBox, Object selectedItem) {
 
         }
 
-        //编辑框失去焦点
+        /**
+         * 编辑框失去焦点
+         *
+         * @param focusEvent focusEvent
+         * @param jComboBox  jComboBox
+         */
         default void focusLost(FocusEvent focusEvent, JComboBox<String> jComboBox) {
         }
 
-        /*编辑框获得焦点*/
+        /**
+         * 编辑框获得焦点
+         *
+         * @param focusEvent focusEvent
+         * @param jComboBox  jComboBox
+         */
         default void focusGained(FocusEvent focusEvent, JComboBox<String> jComboBox) {
         }
 
-        //编辑框被点击
+        /**
+         * 编辑框被点击
+         *
+         * @param mouseEvent mouseEvent
+         * @param jComboBox  jComboBox
+         */
         default void mouseClicked(MouseEvent mouseEvent, JComboBox<String> jComboBox) {
         }
 
         /**
          * 点击item
          *
-         * @param actionEvent
-         * @param jComboBox
+         * @param actionEvent  actionEvent
+         * @param jComboBox    jComboBox
          * @param index        获取到选中项的索引
-         * @param selectedItem
+         * @param selectedItem selectedItem
          */
         default void itemClick(ActionEvent actionEvent, JComboBox<String> jComboBox, int index, String selectedItem) {
         }
@@ -824,6 +1040,12 @@ public class JswCustomWight {
 
     /**
      * 可撤销的 JTextArea
+     *
+     * @param x x
+     * @param y y
+     * @param w w
+     * @param h h
+     * @return JTextArea
      */
     public static JTextArea getJTextAreaUndo(int x, int y, int w, int h) {
         return getJTextAreaUndo(x, y, w, h, "");
@@ -831,6 +1053,13 @@ public class JswCustomWight {
 
     /**
      * 可撤销的 JTextArea
+     *
+     * @param x    x
+     * @param y    y
+     * @param w    w
+     * @param h    h
+     * @param text text
+     * @return JTextArea
      */
     public static JTextArea getJTextAreaUndo(int x, int y, int w, int h, String text) {
         JTextArea textArea = new JTextArea(text);
@@ -1062,6 +1291,14 @@ public class JswCustomWight {
 
     /**
      * 不能编辑的 JTextArea
+     *
+     * @param x             x
+     * @param y             y
+     * @param w             w
+     * @param h             h
+     * @param text          text
+     * @param mouseListener mouseListener
+     * @return JTextArea
      */
     public static JTextArea getJTextAreaDescription(int x, int y, int w, int h, String text, MouseListener mouseListener) {
         JTextArea textArea = new JTextArea();
@@ -1080,6 +1317,14 @@ public class JswCustomWight {
 
     /**
      * 不能编辑的 JTextArea
+     *
+     * @param x             x
+     * @param y             y
+     * @param w             w
+     * @param h             h
+     * @param text          text
+     * @param mouseListener mouseListener
+     * @return JScrollPane JTextArea
      */
     public static JScrollPane getJTextAreaScrol(int x, int y, int w, int h, String text, MouseListener mouseListener) {
         JTextArea textArea = new JTextArea();
@@ -1098,6 +1343,11 @@ public class JswCustomWight {
 
     /**
      * 右键menu和单机按钮
+     *
+     * @param btnName          btnName
+     * @param menuJButtonClick menuJButtonClick
+     * @param items            items
+     * @return JButton
      */
     public static JButton getRightMenuJButton(String btnName, IRightMenuJButtonClick menuJButtonClick, String... items) {
         return getRightMenuJButton(btnName, null, menuJButtonClick, items);
@@ -1107,6 +1357,16 @@ public class JswCustomWight {
      * 可设置位置
      * 带右键菜单的按钮
      * 右键menu和单机按钮
+     *
+     * @param x                x
+     * @param y                y
+     * @param w                w
+     * @param h                h
+     * @param btnName          btnName
+     * @param tip              tip
+     * @param menuJButtonClick menuJButtonClick
+     * @param items            items
+     * @return JButton
      */
     public static JButton getRightMenuJButton(int x, int y, int w, int h, String btnName, String tip, IRightMenuJButtonClick menuJButtonClick, String... items) {
         JButton rightMenuJButton = getRightMenuJButton(btnName, tip, menuJButtonClick, items);
@@ -1117,6 +1377,12 @@ public class JswCustomWight {
     /**
      * 带右键菜单的按钮
      * 右键menu和单机按钮
+     *
+     * @param btnName          btnName
+     * @param tip              tip
+     * @param menuJButtonClick menuJButtonClick
+     * @param items            items
+     * @return JButton
      */
     public static JButton getRightMenuMarginJButton(String btnName, String tip, IRightMenuJButtonClick menuJButtonClick, String... items) {
         JButton rightMenuJButton = getRightMenuJButton(btnName, tip, menuJButtonClick, items);
@@ -1127,6 +1393,12 @@ public class JswCustomWight {
     /**
      * 带右键菜单的按钮
      * 右键menu和单机按钮
+     *
+     * @param btnName          btnName
+     * @param tip              tip
+     * @param menuJButtonClick menuJButtonClick
+     * @param items            items
+     * @return JButton
      */
     public static JButton getRightMenuJButton(String btnName, String tip, IRightMenuJButtonClick menuJButtonClick, String... items) {
         // 添加按钮，设置点击事件
@@ -1165,6 +1437,12 @@ public class JswCustomWight {
     /**
      * 带右键菜单的按钮
      * 右键menu和单机按钮
+     *
+     * @param btnName          btnName
+     * @param tip              tip
+     * @param menuJButtonClick menuJButtonClick
+     * @param items            items
+     * @return JButton
      */
     public static JButton getRightMenuJButton2(String btnName, String tip, IRightMenuJButtonClick2 menuJButtonClick, ClickButton... items) {
         // 添加按钮，设置点击事件
@@ -1203,6 +1481,10 @@ public class JswCustomWight {
     /**
      * 带右键菜单的按钮
      * 右键menu和单机按钮
+     *
+     * @param tip   tip
+     * @param items items
+     * @return JButton
      */
     public static JButton getRightMenuJButton3(String tip, ClickButton... items) {
         if (items == null || items.length == 0) {
@@ -1241,6 +1523,14 @@ public class JswCustomWight {
         return button;
     }
 
+    /**
+     * JButton
+     *
+     * @param text           text
+     * @param tip            tip
+     * @param actionListener actionListener
+     * @return JButton
+     */
     @Deprecated
     public static JButton getJButton(String text, String tip, JswOnLongClickListener actionListener) {
         JButton jButton = new JButton(text);
@@ -1253,6 +1543,11 @@ public class JswCustomWight {
 
     /**
      * 下拉框
+     *
+     * @param items             items
+     * @param IPosClickListener IPosClickListener
+     * @param <T>               泛型
+     * @return 下拉框
      */
     public static <T> JComboBox<T> createComboBox(ArrayList<T> items, IPosClickListener IPosClickListener) {
         JComboBox<T> comboBox = new JComboBox<>();
@@ -1271,6 +1566,13 @@ public class JswCustomWight {
         return comboBox;
     }
 
+    /**
+     * 单选按钮
+     *
+     * @param frame              frame
+     * @param ijRadioButtonClick ijRadioButtonClick
+     * @param btns               btns
+     */
     private static void getJRadioButton(final JFrame frame, IJRadioButtonClick ijRadioButtonClick, String... btns) {
 //更多请阅读：https://www.yiibai.com/swingexamples/using_radiobutton_group.html
         JPanel panel = new JPanel();
@@ -1292,11 +1594,26 @@ public class JswCustomWight {
         frame.getContentPane().add(panel, BorderLayout.CENTER);
     }
 
+    /**
+     * JList
+     *
+     * @param data     data
+     * @param callback callback
+     * @param <T>      泛型
+     * @return JList
+     */
     public static <T> JList<T> createJList(List<T> data, CellRendererCallback<T> callback) {
         DefaultListModel<T> model = new DefaultListModel<>();
         return createJList(model, data, callback);
     }
 
+    /**
+     * @param data     data
+     * @param callback callback
+     * @param <T>      泛型
+     * @param model    model
+     * @return JList
+     */
     public static <T> JList<T> createJList(DefaultListModel<T> model, List<T> data, CellRendererCallback<T> callback) {
         AtomicBoolean atomicBoolean = new AtomicBoolean();
         for (T item : data) {
@@ -1342,26 +1659,75 @@ public class JswCustomWight {
         return tjList;
     }
 
+    /**
+     * 单选按钮回调
+     */
     public interface IJRadioButtonClick {
+        /**
+         * 点击回调
+         *
+         * @param pos     pos
+         * @param btnName btnName
+         */
         void click(int pos, String btnName);
     }
 
+    /**
+     * 列表回调
+     *
+     * @param <T> 泛型
+     */
     public interface CellRendererCallback<T> {
         //        void click(JLabel cell, T value, boolean isSelected);
+
+        /**
+         * 获取文本
+         *
+         * @param t t
+         * @return 字符串
+         */
         String getText(T t);
 
+        /**
+         * 单击回调
+         *
+         * @param t t
+         */
         void click(T t);
 
+        /**
+         * 双击回调
+         *
+         * @param t t
+         */
         void doubleClick(T t);
     }
 
+    /**
+     * 自定义列表渲染器
+     *
+     * @param <T> 泛型
+     */
     static class CustomListRenderer<T> implements ListCellRenderer<T> {
         private final CellRendererCallback<T> callback;
 
+        /**
+         * @param callback 回调
+         */
         public CustomListRenderer(CellRendererCallback<T> callback) {
             this.callback = callback;
         }
 
+        /**
+         * 渲染列表项
+         *
+         * @param list         The JList we're painting.
+         * @param value        The value returned by list.getModel().getElementAt(index).
+         * @param index        The cells index.
+         * @param isSelected   True if the specified cell was selected.
+         * @param cellHasFocus True if the specified cell has the focus.
+         * @return Component
+         */
         @Override
         public Component getListCellRendererComponent(JList<? extends T> list, T value, int index,
                                                       boolean isSelected, boolean cellHasFocus) {
@@ -1376,6 +1742,15 @@ public class JswCustomWight {
 
     /**
      * 下拉框
+     *
+     * @param x                 x
+     * @param y                 y
+     * @param w                 w
+     * @param h                 h
+     * @param items             items
+     * @param iPosClickListener iPosClickListener
+     * @param <T>               泛型
+     * @return JComboBox
      */
     public static <T> JComboBox<T> createComboBox(int x, int y, int w, int h, ArrayList<T> items, IPosClickListener iPosClickListener) {
         JComboBox<T> comboBox2 = createComboBox(items, iPosClickListener);
@@ -1385,6 +1760,11 @@ public class JswCustomWight {
 
     /**
      * 添加顶部菜单按钮
+     *
+     * @param menuBar            menuBar
+     * @param menuTitle          menuTitle
+     * @param iItemClickListener iItemClickListener
+     * @param menuItems          menuItems
      */
     public static void addJMenus(JMenuBar menuBar, String menuTitle, IItemClickListener iItemClickListener, String... menuItems) {
         // 创建菜单并添加到菜单栏
@@ -1401,6 +1781,16 @@ public class JswCustomWight {
         menuBar.add(optionsMenu);
     }
 
+    /**
+     * 获取多个按钮
+     *
+     * @param x    x
+     * @param y    y
+     * @param w    w
+     * @param h    h
+     * @param btns btns
+     * @return Component
+     */
     public static Component getMrBtns(int x, int y, int w, int h, String... btns) {
         JPanel otherJPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         otherJPanel.setBounds(x, y, w, h);
@@ -1431,10 +1821,21 @@ public class JswCustomWight {
         return otherJPanel;
     }
 
+    /**
+     * 顶部菜单按钮点击回调
+     */
     public interface IPosClickListener extends EventListener {
+        /**
+         * 点击回调
+         * @param index index
+         * @param val val
+         */
         void click(int index, String val);
     }
 
+    /**
+     * 顶部菜单按钮
+     */
     static class Mrb extends JButton {
         private String extraInfo;
         private int index;
@@ -1447,6 +1848,10 @@ public class JswCustomWight {
             return extraInfo;
         }
 
+        /**
+         * 设置额外信息
+         * @param extraInfo extraInfo
+         */
         public void setExtraInfo(String extraInfo) {
             this.extraInfo = extraInfo;
         }
@@ -1462,6 +1867,11 @@ public class JswCustomWight {
 
     /**
      * 添加顶部菜单按钮
+     *
+     * @param frame              frame
+     * @param menuTitle          menuTitle
+     * @param iItemClickListener iItemClickListener
+     * @param menuItems          menuItems
      */
     public static void addJMenus(JFrame frame, String menuTitle, IItemClickListener iItemClickListener, String... menuItems) {
         JMenuBar menuBar = frame.getJMenuBar();
@@ -1485,6 +1895,9 @@ public class JswCustomWight {
 
     }
 
+    /**
+     * 右键菜单
+     */
     public interface IRightMenuJButtonClick {
         /**
          * 双击响应
@@ -1493,12 +1906,25 @@ public class JswCustomWight {
 
         }
 
-        /*单机响应*/
+        /**
+         *
+         * 单机响应
+         * @param button button
+         */
         void clickBtn(JButton button);
 
+        /**
+         * 点击菜单
+         *
+         * @param pos    pos
+         * @param button button
+         */
         void clickMenu(int pos, JButton button);
     }
 
+    /**
+     * 右键菜单
+     */
     public interface IRightMenuJButtonClick2 {
         /**
          * 双击响应
@@ -1507,14 +1933,27 @@ public class JswCustomWight {
 
         }
 
-        /*单机响应*/
+        /**单机响应*/
         void clickBtn();
     }
 
+    /**
+     * 顶部菜单按钮点击回调
+     */
     public interface IItemClickListener {
+        /**
+         * 点击回调
+         * @param pos pos
+         */
         void click(int pos);
     }
 
+    /**
+     * 添加右键菜单
+     * @param list list
+     * @param clickListener clickListener
+     * @param items items
+     */
     public static void addRightClickMenu(JList<?> list, IItemClickListener clickListener, String... items) {
         JPopupMenu popupMenu = new JPopupMenu();
 
