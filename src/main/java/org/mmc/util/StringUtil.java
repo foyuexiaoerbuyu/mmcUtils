@@ -1200,15 +1200,20 @@ public class StringUtil {
     }
 
     /**
-     * @param text        原始完整字符串
-     * @param target      要替换的字符串
-     * @param replacement 替换后的字符串
-     * @return
+     * 该方法用于在字符串中忽略大小写地替换指定的子字符串。
+     *
+     * @param text        原始完整字符串，要在这个字符串中进行替换操作。如果为null，将返回空字符串。
+     * @param target      要替换的字符串，在原始字符串中查找这个子字符串并进行替换。
+     * @param replacement 替换后的字符串，用于替换找到的目标子字符串。
+     * @return 替换后的字符串。如果原始字符串为null，返回空字符串；否则返回替换后的结果。
      */
     public static String ignoreCaseReplace(String text, String target, String replacement) {
+        // 如果原始字符串text为null，直接返回空字符串
         if (text == null) {
             return "";
         }
+        // 使用正则表达式进行替换。"(?i)"是正则表达式的修饰符，表示忽略大小写匹配。
+        // text.replaceAll方法会查找所有匹配"(?i)" + target的子字符串，并将其替换为replacement
         return text.replaceAll("(?i)" + target, replacement);
     }
 
@@ -1219,7 +1224,7 @@ public class StringUtil {
 //        if (sql.trim().startsWith("stelect ")) {
 //        }
         String trim = StringUtil.replaceContinuousSpaces(sql, " ", true).trim();
-        trim = trim.replace(",", ",\n   ");
+        trim = trim.replace(", ", ",\n   ");
         trim = trim.replace(" from ", " \nFROM  \n  ");
         trim = ignoreCaseReplace(trim, "left join", "\n  LEFT JOIN");
         trim = ignoreCaseReplace(trim, "right join", "\n    RIGHT JOIN");
@@ -1229,6 +1234,12 @@ public class StringUtil {
 //        trim = trim.replaceAll("(?m)^[ \t]*\r?\n", "");
 
         sql = removalNullLine(trim);
+
+        sql = sql.substring(0, sql.indexOf(" ")).toUpperCase() + "\n   " + sql.substring(sql.indexOf(" "));
+
+        sql = sql.replace(" SET ", "\nSET\n   ");
+
+
         System.out.println(sql);
 
         return sql;
@@ -1412,4 +1423,27 @@ public class StringUtil {
         return array == null ? Collections.emptyList() : Arrays.asList(array);
     }
 
+    /**
+     * 判断字符串的第一个字母是否大写
+     * @param str 字符串参数
+     * @return 是否大写
+     */
+    public static boolean isFirstLetterUpperCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        return Character.isUpperCase(str.charAt(0));
+    }
+
+    /**
+     * 判断字符串的第一个字母是否小写
+     * @param str 字符串参数
+     * @return 是否小写
+     */
+    public static boolean isFirstLetterLowerCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        return Character.isLowerCase(str.charAt(0));
+    }
 }

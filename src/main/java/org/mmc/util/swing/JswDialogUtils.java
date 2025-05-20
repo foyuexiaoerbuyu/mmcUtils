@@ -446,7 +446,7 @@ public class JswDialogUtils {
      * @param msg 提示消息
      */
     public static void showAutoCloseDialogShort(String msg) {
-        showAutoCloseDialogShort("提示", msg, 500);
+        showAutoCloseDialogShort("提示", msg, 1000);
     }
 
     /**
@@ -953,7 +953,7 @@ public class JswDialogUtils {
      * @param JTextAreaText 输入框的初始文本
      * @param buttons       按钮配置数组
      */
-    public static void showInputDialog(Component parent, String title, String JTextAreaText, ClickButton... buttons) {
+    public static void showJTextAreaDialog(Component parent, String title, String JTextAreaText, ClickButton... buttons) {
         // 创建对话框
         JDialog dialog = new JDialog();
         dialog.setTitle(title);
@@ -984,14 +984,17 @@ public class JswDialogUtils {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         // 添加按钮（从 ButtonConfig 动态生成）
-        for (ClickButton buttonConfig : buttons) {
-            JButton jButton = new JButton(buttonConfig.getText());
-            jButton.addActionListener(e -> {
-                // 获取输入框内容并传递给回调函数
-                String inputText = textArea.getText();
-                buttonConfig.getAction().accept(inputText);
-            });
-            buttonPanel.add(jButton);
+        if (buttons != null) {
+            for (ClickButton clickButton : buttons) {
+                JButton jButton = new JButton(clickButton.getText());
+                jButton.addActionListener(e -> {
+                    // 获取输入框内容并传递给回调函数
+                    String inputText = textArea.getText();
+                    clickButton.getAction().accept(inputText);
+                    dialog.dispose();
+                });
+                buttonPanel.add(jButton);
+            }
         }
 
         // 将内容面板和按钮面板添加到对话框

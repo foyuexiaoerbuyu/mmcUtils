@@ -409,27 +409,165 @@ public class JdbcHelper {
      * @return 每个 sql 语句影响的行数数组
      * @throws SQLException 数据库操作异常
      */
-    public int[] batchUpdate(Connection conn, List<String> sqlList) throws SQLException {
+    /**
+     * 批量执行SQL语句（每1000条自动提交一次）
+     *
+     * @param conn    数据库连接（不能为null）
+     * @param sqlList SQL语句列表（不能为null）
+     * @return 每个SQL的执行结果（受影响行数）
+     * @throws SQLException             如果数据库操作失败
+     * @throws IllegalArgumentException 如果参数无效
+     */
+    public int[] batch(Connection conn, List<String> sqlList) throws SQLException {
+        // 参数校验
+        if (conn == null) {
+            throw new IllegalArgumentException("Connection cannot be null");
+        }
+        if (sqlList == null) {
+            throw new IllegalArgumentException("SQL list cannot be null");
+        }
+        if (sqlList.isEmpty()) {
+            return new int[0];
+        }
+
+        boolean originalAutoCommit = conn.getAutoCommit();
         try {
             conn.setAutoCommit(false);
+
             try (Statement statement = conn.createStatement()) {
-                for (String sql : sqlList) {
+                List<Integer> allResults = new ArrayList<>(sqlList.size());
+                final int batchSize = 1000;
+
+                for (int i = 0; i < sqlList.size(); i++) {
+                    String sql = sqlList.get(i);
+                    if (sql == null || sql.trim().isEmpty()) {
+                        allResults.add(0); // 空SQL视为不影响行
+                        continue;
+                    }
+
                     statement.addBatch(sql);
-                    // 分段提交，避免内存问题
-                    if (sqlList.indexOf(sql) % 1000 == 0) {
-                        statement.executeBatch();
+
+                    // 每1000条执行一次（避免内存问题）
+                    if ((i + 1) % batchSize == 0) {
+                        int[] batchResult = statement.executeBatch();
+                        for (int r : batchResult) {
+                            allResults.add(r);
+                        }
+                        statement.clearBatch();
                     }
                 }
-                int[] result = statement.executeBatch();
+
+                // 执行剩余的SQL
+                int[] remainingResults = statement.executeBatch();
+                for (int r : remainingResults) {
+                    allResults.add(r);
+                }
+
                 conn.commit();
-                return result;
+                return allResults.stream().mapToInt(Integer::intValue).toArray();
             }
         } catch (SQLException e) {
-            conn.rollback();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                e.addSuppressed(ex); // 回滚异常附加到主异常
+            }
             throw e;
         } finally {
-            conn.setAutoCommit(true);
+            try {
+                conn.setAutoCommit(originalAutoCommit);
+            } catch (SQLException e) {
+                // 记录错误，但不应影响主逻辑
+                System.err.println("Failed to restore auto-commit: " + e.getMessage());
+            }
         }
+    }
+
+
+    /**
+     * 批量执行SQL语句
+     *
+     * @param conn      数据库连接(不能为null)
+     * @param sqlList   要执行的SQL语句列表(可为空)
+     * @param batchSize 批处理大小(必须大于0)
+     * @return 每个SQL语句的执行结果数组(受影响行数)
+     * @throws SQLException             如果发生数据库错误
+     * @throws IllegalArgumentException 如果参数无效
+     */
+    public int[] batchExecuteSql(Connection conn, List<String> sqlList, int batchSize) throws SQLException {
+        if (conn == null) {
+            throw new SQLException("Connection cannot be null");
+        }
+        if (conn.isClosed()) {
+            throw new SQLException("Connection is closed");
+        }
+        if (sqlList == null || sqlList.isEmpty()) {
+            return new int[0];
+        }
+        final int MIN_BATCH_SIZE = 1;
+        if (batchSize < MIN_BATCH_SIZE) {
+            throw new IllegalArgumentException("Batch size must be at least " + MIN_BATCH_SIZE);
+        }
+
+        boolean originalAutoCommit = conn.getAutoCommit();
+        try {
+            conn.setAutoCommit(false);
+
+            try (Statement statement = conn.createStatement()) {
+                List<Integer> allResults = new ArrayList<>(sqlList.size());
+                int count = 0;
+
+                for (String sql : sqlList) {
+                    if (sql == null || sql.trim().isEmpty()) {
+                        allResults.add(0); // 对于空SQL，添加0表示没有执行
+                        continue;
+                    }
+
+                    statement.addBatch(sql);
+                    count++;
+
+                    if (count % batchSize == 0) {
+                        addBatchResults(allResults, statement.executeBatch());
+                        statement.clearBatch();
+                    }
+                }
+
+                // 执行剩余的批处理
+                int[] remainingResults = statement.executeBatch();
+                if (remainingResults.length > 0) {
+                    addBatchResults(allResults, remainingResults);
+                }
+
+                conn.commit();
+                return allResults.stream().mapToInt(i -> i).toArray();
+            }
+        } catch (SQLException e) {
+            try {
+                e.printStackTrace();
+                System.out.println("Batch execution failed, attempting rollback");
+                conn.rollback();
+            } catch (SQLException ex) {
+                e.addSuppressed(ex);
+            }
+            throw e;
+        } finally {
+            try {
+                conn.setAutoCommit(originalAutoCommit);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Failed to restore auto-commit mode");
+            }
+        }
+    }
+
+    /**
+     * 添加批处理结果
+     *
+     * @param results     结果列表
+     * @param batchResult 批处理结果
+     */
+    private void addBatchResults(List<Integer> results, int[] batchResult) {
+        Arrays.stream(batchResult).forEach(results::add);
     }
 
 
@@ -489,7 +627,7 @@ public class JdbcHelper {
      * @throws SQLException SQLException
      */
     public Connection connection(String url, String userName, String password) throws SQLException {
-        if (url == null || userName == null || password == null) {
+        if (url == null || userName == null || password == null || url.isEmpty() || userName.isEmpty() || password.isEmpty()) {
             throw new NullPointerException("url, userName, password 不能为空!!!");
         }
 

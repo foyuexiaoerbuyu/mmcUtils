@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class JswUtils {
 
     /**
      * 居中显示 JFrame 窗口
+     *
      * @param frame 要居中显示的 JFrame 窗口
      */
     public static void setScreenMiddle(JFrame frame) {
@@ -37,6 +39,7 @@ public class JswUtils {
 
     /**
      * 获取 JTextField 组件右侧位置的 X 坐标
+     *
      * @param textField JTextField 组件
      * @return 右侧位置的 X 坐标
      */
@@ -46,6 +49,7 @@ public class JswUtils {
 
     /**
      * 获取 JTextField 组件下方位置的 Y 坐标
+     *
      * @param textField JTextField 组件
      * @return 下方位置的 Y 坐标
      */
@@ -55,6 +59,7 @@ public class JswUtils {
 
     /**
      * 获取 JButton 组件右侧位置的 X 坐标
+     *
      * @param jButton JButton 组件
      * @return 右侧位置的 X 坐标
      */
@@ -64,6 +69,7 @@ public class JswUtils {
 
     /**
      * 获取 JButton 组件下方位置的 Y 坐标
+     *
      * @param jButton JButton 组件
      * @return 下方位置的 Y 坐标
      */
@@ -73,6 +79,7 @@ public class JswUtils {
 
     /**
      * 获取 JScrollPane 组件右侧位置的 X 坐标
+     *
      * @param jScrollPane JScrollPane 组件
      * @return 右侧位置的 X 坐标
      */
@@ -82,6 +89,7 @@ public class JswUtils {
 
     /**
      * 获取 JScrollPane 组件下方位置的 Y 坐标
+     *
      * @param jScrollPane JScrollPane 组件
      * @return 下方位置的 Y 坐标
      */
@@ -91,9 +99,10 @@ public class JswUtils {
 
     /**
      * 设置 JList 的数据
+     *
      * @param jList JList 组件
      * @param datas 要设置的数据列表
-     * @param <T> 数据类型
+     * @param <T>   数据类型
      */
     public static <T> void setJListDatas(JList<T> jList, List<T> datas) {
         // 调用带回调的 setJListDatas 方法，回调设为 null
@@ -102,10 +111,11 @@ public class JswUtils {
 
     /**
      * 设置 JList 的数据，并添加点击回调
-     * @param jList JList 组件
-     * @param datas 要设置的数据列表
+     *
+     * @param jList              JList 组件
+     * @param datas              要设置的数据列表
      * @param jListClickCallback 点击回调接口
-     * @param <T> 数据类型
+     * @param <T>                数据类型
      */
     public static <T> void setJListDatas(JList<T> jList, List<T> datas, jListClickCallback jListClickCallback) {
         // 移除 JList 中的所有元素
@@ -133,12 +143,28 @@ public class JswUtils {
     }
 
     /**
+     * 设置图标
+     * @param frame frame
+     * @param imUrl imUrl
+     */
+    public static void setIcon(JFrame frame, String imUrl) {
+
+        try {
+            URL imageUrl = new URL(imUrl);
+            frame.setIconImage(Toolkit.getDefaultToolkit().getImage(imageUrl));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 定义一个接口，用于在 Swing 线程中执行操作
      */
     public interface SwingRun {
         /**
          * 执行操作的方法
-         * @param frame JFrame 窗口
+         *
+         * @param frame   JFrame 窗口
          * @param tabPane JTabbedPane 选项卡面板
          */
         void run(JFrame frame, JTabbedPane tabPane);
@@ -146,6 +172,7 @@ public class JswUtils {
 
     /**
      * 在 Swing 线程中运行指定的操作
+     *
      * @param swingRun 要执行的操作
      */
     public static void run(SwingRun swingRun) {
@@ -186,6 +213,7 @@ public class JswUtils {
 
     /**
      * 设置 JFrame 窗口始终置顶
+     *
      * @param frame 要设置的 JFrame 窗口
      */
     public static void setAlwaysOnTop(JFrame frame) {
@@ -239,17 +267,17 @@ public class JswUtils {
                 t.printStackTrace();
 
                 // 在事件调度线程中显示错误对话框
-                SwingUtilities.invokeLater(() ->
-                        JOptionPane.showMessageDialog(null,
-                                "界面操作错误: " + t.getMessage(),
-                                "界面错误",
-                                JOptionPane.ERROR_MESSAGE));
+                SwingUtilities.invokeLater(() -> {
+                    JswDialogUtils.showJTextAreaDialog(null, "界面错误", "界面操作错误:\n " + t.getMessage(), new JswDialogUtils.ClickButton("确定", (text) -> {
+                    }));
+                });
             }
         }
     }
 
     /**
      * 处理应用初始化错误
+     *
      * @param t 异常对象
      */
     private static void handleInitializationError(Throwable t) {
@@ -269,6 +297,7 @@ public class JswUtils {
 
     /**
      * 复制当前光标所在行，并追加到文本末尾
+     *
      * @param textArea JTextArea 组件
      */
     public static void copyLine(JTextArea textArea) {

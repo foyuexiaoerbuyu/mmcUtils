@@ -72,6 +72,18 @@ public class TestUtils {
     }
 
     /**
+     * @param min 最小值
+     * @param max   最大值
+     * @return 获取范围内随机数字
+     */
+    public static double getRandomNum(double min, double max) {
+        Random random = new Random();
+        double randomValue = min + (max - min) * random.nextDouble();
+        DecimalFormat df = new DecimalFormat("#.00");
+        return Double.parseDouble(df.format(randomValue));
+    }
+
+    /**
      * @return 获取随机手机号
      */
     public static String getRandomPhoneNumber() {

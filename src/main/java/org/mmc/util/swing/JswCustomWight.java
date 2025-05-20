@@ -731,10 +731,11 @@ public class JswCustomWight {
     public interface JComboBoxClickCallBack {
         /**
          * 点击回调
-         * @param jComboBox jComboBox
-         * @param e e
+         *
+         * @param jComboBox     jComboBox
+         * @param e             e
          * @param selectedIndex selectedIndex
-         * @param item item
+         * @param item          item
          */
         void click(JComboBox<String> jComboBox, ActionEvent e, int selectedIndex, String item);
     }
@@ -1062,7 +1063,26 @@ public class JswCustomWight {
      * @return JTextArea
      */
     public static JTextArea getJTextAreaUndo(int x, int y, int w, int h, String text) {
+        final float MIN_FONT_SIZE = 8.0f;
+        final float MAX_FONT_SIZE = 72.0f;
+        final float FONT_SIZE_STEP = 1.0f;
+
         JTextArea textArea = new JTextArea(text);
+        textArea.addMouseWheelListener(e -> {
+            //鼠标滚轮缩放字体大小
+            if (e.isControlDown()) {
+                Font currentFont = textArea.getFont();
+                float newSize = currentFont.getSize2D() - (e.getWheelRotation() * FONT_SIZE_STEP);
+
+                // Clamp the font size between min and max
+                newSize = Math.max(MIN_FONT_SIZE, Math.min(MAX_FONT_SIZE, newSize));
+
+                if (newSize != currentFont.getSize2D()) {
+                    textArea.setFont(currentFont.deriveFont(newSize));
+                }
+                e.consume(); // Prevent scrolling when zooming
+            }
+        });
         textArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -1827,8 +1847,9 @@ public class JswCustomWight {
     public interface IPosClickListener extends EventListener {
         /**
          * 点击回调
+         *
          * @param index index
-         * @param val val
+         * @param val   val
          */
         void click(int index, String val);
     }
@@ -1850,6 +1871,7 @@ public class JswCustomWight {
 
         /**
          * 设置额外信息
+         *
          * @param extraInfo extraInfo
          */
         public void setExtraInfo(String extraInfo) {
@@ -1907,8 +1929,8 @@ public class JswCustomWight {
         }
 
         /**
-         *
          * 单机响应
+         *
          * @param button button
          */
         void clickBtn(JButton button);
@@ -1933,7 +1955,9 @@ public class JswCustomWight {
 
         }
 
-        /**单机响应*/
+        /**
+         * 单机响应
+         */
         void clickBtn();
     }
 
@@ -1943,6 +1967,7 @@ public class JswCustomWight {
     public interface IItemClickListener {
         /**
          * 点击回调
+         *
          * @param pos pos
          */
         void click(int pos);
@@ -1950,9 +1975,10 @@ public class JswCustomWight {
 
     /**
      * 添加右键菜单
-     * @param list list
+     *
+     * @param list          list
      * @param clickListener clickListener
-     * @param items items
+     * @param items         items
      */
     public static void addRightClickMenu(JList<?> list, IItemClickListener clickListener, String... items) {
         JPopupMenu popupMenu = new JPopupMenu();

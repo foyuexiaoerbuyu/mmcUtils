@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -2761,6 +2762,31 @@ public class FileUtils {
 //        Arrays.sort(filenames);
         StringUtil.reverseArray(filenames);
         return filenames;
+    }
+
+    /**
+     * 处理大文件，使用BufferedReader逐行读取文件内容。
+     * @param filePath filePath
+     * @param lineProcessor lineProcessor
+     * @throws IOException IOException
+     */
+    public static void processLargeFile(String filePath, Consumer<String> lineProcessor) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lineProcessor.accept(line);
+            }
+        }
+    }
+
+    /**
+     * 使用NIO读取大文件
+     * @param filePath filePath
+     * @return 行数据
+     * @throws IOException IOException
+     */
+    public static List<String> readAllLinesNIO(String filePath) throws IOException {
+        return Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
     }
 
 }
