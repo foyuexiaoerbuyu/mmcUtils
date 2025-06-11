@@ -436,7 +436,7 @@ public class WinUtils {
     /**
      * 打开浏览器
      */
-    public static void open(String url) throws CheckException {
+    public static void open(String url) throws Exception {
         try {
             Desktop desktop = Desktop.getDesktop();
             if (Desktop.isDesktopSupported() && desktop.isSupported(Desktop.Action.BROWSE))
@@ -445,7 +445,7 @@ public class WinUtils {
             try {
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
             } catch (Exception ioException) {
-                throw new CheckException("打开浏览器失败");
+                throw new Exception("打开浏览器失败");
             }
         }
     }

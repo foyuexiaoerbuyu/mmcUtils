@@ -116,10 +116,10 @@ public class StringUtil {
      * @param str 待校验字符串
      * @return true 包含中文字符 false 不包含中文字符
      */
-    public static boolean isContainChineseSimple(String str) throws CheckException {
+    public static boolean isContainChineseSimple(String str) throws NullPointerException {
 
         if (isEmpty(str)) {
-            throw new CheckException("字符串不能为空");
+            throw new NullPointerException("字符串不能为空");
         }
         Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
         Matcher m = p.matcher(str);
@@ -132,10 +132,10 @@ public class StringUtil {
      * @param str 待校验字符串
      * @return true 包含中文字符 false 不包含中文字符
      */
-    public static boolean isContainChinese2symbol(String str) throws CheckException {
+    public static boolean isContainChinese2symbol(String str) throws NullPointerException {
 
         if (isEmpty(str)) {
-            throw new CheckException("字符串不能为空");
+            throw new NullPointerException("字符串不能为空");
         }
         Pattern p = Pattern.compile("[\u4E00-\u9FA5|\\！|\\，|\\。|\\（|\\）|\\《|\\》|\\“|\\”|\\？|\\：|\\；|\\【|\\】]");
         Matcher m = p.matcher(str);
@@ -444,7 +444,7 @@ public class StringUtil {
     /**
      * 按行读取字符串
      */
-    public static void readStrByLinsEx(String str, IReadLines iReadLin) throws IOException, CheckException {
+    public static void readStrByLinsEx(String str, IReadLines iReadLin) throws IOException, NullPointerException {
         BufferedReader br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
         String line;
         int linNum = 0;
@@ -701,7 +701,7 @@ public class StringUtil {
         /**
          * @return 返回false时跳出循环
          */
-        boolean readLine(String line, int lineIndex) throws CheckException;
+        boolean readLine(String line, int lineIndex) throws NullPointerException;
 
         default void readLineEx(Exception exception) {
             // 处理异常，例如打印错误信息
@@ -710,7 +710,7 @@ public class StringUtil {
     }
 
     public interface IReadLines {
-        void readLin(String lin, int lineIndex) throws CheckException;
+        void readLin(String lin, int lineIndex) throws NullPointerException;
 
         default void readLinEx(Exception exception) {
 
