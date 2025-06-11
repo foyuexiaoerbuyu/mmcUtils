@@ -13,17 +13,19 @@ https://www.cnblogs.com/kenx/p/17538390.html
 <dependency>
     <groupId>io.github.foyuexiaoerbuyu</groupId>
     <artifactId>mmcUtils</artifactId>
-    <version>1.1</version>
+    <version>1.3</version>
 </dependency>
 ```
 
 ```
-implementation 'io.github.foyuexiaoerbuyu:mmcUtils:1.1'
+implementation 'io.github.foyuexiaoerbuyu:mmcUtils:1.3'
 ```
 
+使用github登陆
 https://central.sonatype.com/artifact/io.github.foyuexiaoerbuyu/mmcUtils
 
 注意要点
 1.修改maven的setting文件里给servers添加server节点(这里的信息是中央仓库的id、账号、密码)
 2.pom里的gpg节点信息(本地gpg路径和公钥)
 3.所有方法必须加注释
+
