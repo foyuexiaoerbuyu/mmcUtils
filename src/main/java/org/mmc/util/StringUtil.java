@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
@@ -1445,5 +1448,69 @@ public class StringUtil {
             return false;
         }
         return Character.isLowerCase(str.charAt(0));
+    }
+
+
+    /**
+     * 计算百分比 (分子/分母 * 100)
+     * @param numerator 分子
+     * @param denominator 分母
+     * @return 百分比值（如 0.75 表示 75%）
+     */
+    public static BigDecimal calculate(Number numerator, Number denominator) {
+        if (numerator == null || denominator == null || denominator.doubleValue() == 0) {
+            return BigDecimal.ZERO;
+        }
+
+        // 默认保留两位小数
+        final int DEFAULT_SCALE = 2;
+        // 中间计算保留四位小数
+        final int INTERMEDIATE_SCALE = 4;
+        // 百分比基数
+        final BigDecimal PERCENTAGE_BASE = BigDecimal.valueOf(100);
+
+        return new BigDecimal(numerator.toString())
+                .divide(new BigDecimal(denominator.toString()), INTERMEDIATE_SCALE, RoundingMode.HALF_UP)
+                .multiply(PERCENTAGE_BASE)
+                .setScale(DEFAULT_SCALE, RoundingMode.HALF_UP);
+    }
+
+    /**
+     * 计算百分比并格式化为字符串(保留两位小数)
+     * @param numerator 分子
+     * @param denominator 分母
+     * @return 格式化后的百分比字符串（如 "75.00%"）
+     */
+    public static String formatPercentage(Number numerator, Number denominator) {
+        return formatPercentage(numerator, denominator, "0.00%");
+    }
+
+    /**
+     * 计算百分比并格式化为字符串(自定义格式)
+     * @param numerator 分子
+     * @param denominator 分母
+     * @param pattern 格式模式，例如 "0%" 或 "0.00%"
+     * @return 格式化后的百分比字符串
+     */
+    public static String formatPercentage(Number numerator, Number denominator, String pattern) {
+        BigDecimal result = calculate(numerator, denominator);
+        return format(result, pattern);
+    }
+
+    /**
+     * 格式化百分比值为字符串
+     * @param percentage 百分比值
+     * @param pattern 格式模式
+     * @return 格式化后的百分比字符串
+     */
+    public static String format(BigDecimal percentage, String pattern) {
+        if (percentage == null) {
+            return "0.00%";
+        }
+        // 百分比基数
+        final BigDecimal PERCENTAGE_BASE = BigDecimal.valueOf(100);
+        DecimalFormat df = new DecimalFormat(Objects.requireNonNullElse(pattern, "0.00%"));
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        return df.format(percentage.divide(PERCENTAGE_BASE));
     }
 }
