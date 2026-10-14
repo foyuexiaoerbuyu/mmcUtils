@@ -1507,10 +1507,20 @@ public class StringUtil {
         if (percentage == null) {
             return "0.00%";
         }
+
         // 百分比基数
         final BigDecimal PERCENTAGE_BASE = BigDecimal.valueOf(100);
-        DecimalFormat df = new DecimalFormat(Objects.requireNonNullElse(pattern, "0.00%"));
+
+        // 创建DecimalFormat并应用传入的模式
+        DecimalFormat df = new DecimalFormat(pattern);
         df.setRoundingMode(RoundingMode.HALF_UP);
-        return df.format(percentage.divide(PERCENTAGE_BASE));
+
+        try {
+            // 执行除法运算并格式化结果
+            return df.format(percentage.divide(PERCENTAGE_BASE, 4, RoundingMode.HALF_UP)) + "%";
+        } catch (ArithmeticException e) {
+            // 处理除零异常
+            return "0.00%";
+        }
     }
 }

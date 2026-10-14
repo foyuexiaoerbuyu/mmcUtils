@@ -288,52 +288,70 @@ public class TestUtils {
                 + road[randomRoadNum] + num + "号" + home[randomHomeNum];
     }
 
-    // 18位身份证号码各位的含义:
-    // 1-2位省、自治区、直辖市代码；
-    // 3-4位地级市、盟、自治州代码；
-    // 5-6位县、县级市、区代码；
-    // 7-14位出生年月日，比如19670401代表1967年4月1日；
-    // 15-17位为顺序号，其中17位（倒数第二位）男为单数，女为双数；
-    // 18位为校验码，0-9和X。
-    // 作为尾号的校验码，是由把前十七位数字带入统一的公式计算出来的，
-    // 计算的结果是0-10，如果某人的尾号是0－9，都不会出现X，但如果尾号是10，那么就得用X来代替，
-    // 因为如果用10做尾号，那么此人的身份证就变成了19位。X是罗马数字的10，用X来代替10
+    // 加权因子
+    private static final int[] WEIGHT = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+    // 校验码对照表
+    private static final char[] CHECK_CODE = {'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'};
 
     public static String getRandomIdCard() {
-        String id = "";
-        // 随机生成省、自治区、直辖市代码 1-2
+        // 省份编码
         String provinces[] = {"11", "12", "13", "14", "15", "21", "22", "23",
                 "31", "32", "33", "34", "35", "36", "37", "41", "42", "43",
                 "44", "45", "46", "50", "51", "52", "53", "54", "61", "62",
                 "63", "64", "65", "71", "81", "82"};
-        String province = provinces[new Random().nextInt(provinces.length - 1)];
-        // 随机生成地级市、盟、自治州代码 3-4
+        String province = provinces[random.nextInt(provinces.length)];
+
+        // 地级市编码
         String citys[] = {"01", "02", "03", "04", "05", "06", "07", "08",
                 "09", "10", "21", "22", "23", "24", "25", "26", "27", "28"};
-        String city = citys[new Random().nextInt(citys.length - 1)];
-        // 随机生成县、县级市、区代码 5-6
+        String city = citys[random.nextInt(citys.length)];
+
+        // 区县编码
         String countys[] = {"01", "02", "03", "04", "05", "06", "07", "08",
                 "09", "10", "21", "22", "23", "24", "25", "26", "27", "28",
                 "29", "30", "31", "32", "33", "34", "35", "36", "37", "38"};
-        String county = countys[new Random().nextInt(countys.length - 1)];
-        // 随机生成出生年月 7-14
-        SimpleDateFormat dft = new SimpleDateFormat("yyyyMMdd");
-        Date beginDate = new Date();
-        Calendar date = Calendar.getInstance();
-        date.setTime(beginDate);
-        date.set(Calendar.DATE,
-                date.get(Calendar.DATE) - new Random().nextInt(365 * 100));
-        String birth = dft.format(date.getTime());
-        // 随机生成顺序号 15-17
-        String no = random.nextInt(999) + "";
-        // 随机生成校验码 18
-        String checks[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                "X"};
-        String check = checks[new Random().nextInt(checks.length - 1)];
-        // 拼接身份证号码
-        id = province + city + county + birth + no + check;
+        String county = countys[random.nextInt(countys.length)];
 
-        return id;
+        // 随机生日 近100年
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        // 往前随机 0~100年
+        calendar.add(Calendar.DAY_OF_YEAR, -random.nextInt(365 * 100));
+        SimpleDateFormat dft = new SimpleDateFormat("yyyyMMdd");
+        String birth = dft.format(calendar.getTime());
+
+        // 顺序号：000~999，固定3位，补零
+        int seq = random.nextInt(1000);
+        String no = String.format("%03d", seq);
+
+        // 拼接前17位
+        String pre17 = province + city + county + birth + no;
+
+        // 计算校验码
+        int sum = 0;
+        for (int i = 0; i < 17; i++) {
+            int num = pre17.charAt(i) - '0';
+            sum += num * WEIGHT[i];
+        }
+        char check = CHECK_CODE[sum % 11];
+
+        return pre17 + check;
+    }
+
+    // 验证身份证是否合法，可用来测试
+    public static boolean verifyIdCard(String idCard) {
+        if (idCard == null || idCard.length() != 18) {
+            return false;
+        }
+        String pre17 = idCard.substring(0, 17);
+        char srcCheck = idCard.charAt(17);
+        int sum = 0;
+        for (int i = 0; i < 17; i++) {
+            int num = pre17.charAt(i) - '0';
+            sum += num * WEIGHT[i];
+        }
+        char calcCheck = CHECK_CODE[sum % 11];
+        return Character.toUpperCase(srcCheck) == calcCheck;
     }
 
     /**
