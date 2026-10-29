@@ -3,10 +3,7 @@ package org.mmc.util;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.Year;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -469,6 +466,75 @@ public class DateUtil {
                 }
             }
         }
+    }
+
+    /**
+     * 格式化毫秒时间戳 yyyy-MM-dd HH:mm:ss
+     *
+     * @return 时间字符串 yyyy-MM-dd HH:mm:ss
+     */
+    public static String getTimeStr() {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    /**
+     * 格式化毫秒时间戳
+     *
+     * @param timestampMs 13位毫秒
+     * @param pattern     格式
+     * @return 时间字符串
+     */
+    public static String formatTs(long timestampMs, String pattern) {
+        Instant instant = Instant.ofEpochMilli(timestampMs);
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
+    }
+
+    /**
+     * 格式化毫秒时间戳
+     *
+     * @param pattern 格式
+     * @return 时间字符串
+     */
+    public static String formatTs(String pattern) {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
+    }
+
+    /**
+     * 格式化毫秒时间戳 yyMMddHHmmss
+     *
+     * @return 时间字符串 yyMMddHHmmss
+     */
+    public static String getShortTimestamp() {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyMMddHHmmss"));
+    }
+
+    /**
+     * 格式化毫秒时间戳 yyyy-MM-dd
+     *
+     * @return 时间字符串 yyyy-MM-dd
+     */
+    public static String getShortDate() {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    /**
+     * 格式化毫秒时间戳 yyyyMMdd
+     *
+     * @return 时间字符串 yyyyMMdd
+     */
+    public static String getShortDate1() {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
     }
 
 }
