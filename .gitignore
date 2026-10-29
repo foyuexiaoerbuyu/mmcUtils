@@ -2,3 +2,6 @@
 /target/
 /.idea/
 /说明资料/发布jar
+/pushDoc/*.asc
+/pushDoc/*.xml
+/target_deploy.log
