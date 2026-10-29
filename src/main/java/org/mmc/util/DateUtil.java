@@ -516,6 +516,17 @@ public class DateUtil {
     }
 
     /**
+     * 格式化毫秒时间戳 yyMMddHHmmssSSS
+     *
+     * @return 时间字符串 yyMMddHHmmssSSS
+     */
+    public static String getShortTimestampSSS() {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyMMddHHmmssSSS"));
+    }
+
+    /**
      * 格式化毫秒时间戳 yyyy-MM-dd
      *
      * @return 时间字符串 yyyy-MM-dd
