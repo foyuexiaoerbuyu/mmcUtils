@@ -1,0 +1,5 @@
+    <dependency>
+            <groupId>io.github.foyuexiaoerbuyu</groupId>
+            <artifactId>mmcUtils</artifactId>
+            <version>1.4</version>
+        </dependency>
