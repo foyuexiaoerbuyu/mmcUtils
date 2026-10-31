@@ -5,3 +5,5 @@
 /pushDoc/*.asc
 /pushDoc/*.xml
 /target_deploy.log
+
+/pushDoc/
