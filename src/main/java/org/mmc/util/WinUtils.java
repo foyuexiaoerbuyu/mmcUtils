@@ -19,6 +19,10 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -1538,6 +1542,97 @@ public class WinUtils {
             }
         } else {
             System.out.println("File does not exist or is not readable.");
+        }
+    }
+
+    /**
+     * 读取剪贴板→生成文件→文件入剪贴板
+     *
+     * @return
+     */
+    private String clipboardToFile() {
+        String filePath = WinUtils.getSysClipboardText() + File.separator + getShortTimestamp() + ".txt";
+        clipboardToFile(filePath);
+        return filePath;
+    }
+
+    /**
+     * 读取剪贴板→生成文件→文件入剪贴板
+     *
+     * @param filePath 文件路径
+     * @return
+     */
+    private String clipboardToFile(String filePath) {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+        // ========== 1、获取剪贴板文本 ==========
+        String clipText;
+        try {
+            Transferable transferable = clipboard.getContents(null);
+            if (transferable != null && transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                clipText = (String) transferable.getTransferData(DataFlavor.stringFlavor);
+            } else {
+                throw new IllegalArgumentException("剪贴板里没有文本内容！");
+            }
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("读取剪贴板失败！");
+        }
+
+        // ========== 2、保存文本到指定路径文件 ==========
+        // 修改这里为你想要的路径
+        File targetFile = new File(filePath);
+        try (FileWriter fw = new FileWriter(targetFile)) {
+            fw.write(clipText);
+        } catch (IOException ex) {
+            throw new IllegalArgumentException("写入文件失败！");
+        }
+
+        // ========== 3、把【文件】放进剪贴板（可粘贴文件） ==========
+        List<File> fileList = new ArrayList<>();
+        fileList.add(targetFile);
+        Transferable fileTransferable = new FileSelection(fileList);
+        clipboard.setContents(fileTransferable, null);
+
+        return targetFile.getAbsolutePath();
+    }
+
+
+    /**
+     * 格式化毫秒时间戳 yyMMddHHmmss
+     *
+     * @return 时间字符串 yyMMddHHmmss
+     */
+    public static String getShortTimestamp() {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
+        LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyMMddHHmmss"));
+    }
+
+    // 辅助类：封装文件列表给剪贴板
+    static class FileSelection implements Transferable {
+        private final List<File> files;
+        private static final DataFlavor FILE_FLAVOR = DataFlavor.javaFileListFlavor;
+
+        public FileSelection(List<File> files) {
+            this.files = files;
+        }
+
+        @Override
+        public DataFlavor[] getTransferDataFlavors() {
+            return new DataFlavor[]{FILE_FLAVOR};
+        }
+
+        @Override
+        public boolean isDataFlavorSupported(DataFlavor flavor) {
+            return FILE_FLAVOR.equals(flavor);
+        }
+
+        @Override
+        public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
+            if (!isDataFlavorSupported(flavor)) {
+                throw new UnsupportedFlavorException(flavor);
+            }
+            return files;
         }
     }
 
