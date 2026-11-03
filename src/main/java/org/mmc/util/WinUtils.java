@@ -1550,7 +1550,7 @@ public class WinUtils {
      *
      * @return
      */
-    private String clipboardToFile() {
+    public static String clipboardToFile() {
         String filePath = WinUtils.getSysClipboardText() + File.separator + getShortTimestamp() + ".txt";
         clipboardToFile(filePath);
         return filePath;
@@ -1562,7 +1562,7 @@ public class WinUtils {
      * @param filePath 文件路径
      * @return
      */
-    private String clipboardToFile(String filePath) {
+    public static String clipboardToFile(String filePath) {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
         // ========== 1、获取剪贴板文本 ==========
