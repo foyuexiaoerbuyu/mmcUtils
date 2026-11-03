@@ -1551,7 +1551,7 @@ public class WinUtils {
      * @return
      */
     public static String clipboardToFile() {
-        String filePath = WinUtils.getSysClipboardText() + File.separator + getShortTimestamp() + ".txt";
+        String filePath = WinUtils.getDownloads() + File.separator + getShortTimestamp("yyMMddHHmmss") + "_剪贴板转文件缓存" + ".txt";
         clipboardToFile(filePath);
         return filePath;
     }
@@ -1602,10 +1602,10 @@ public class WinUtils {
      *
      * @return 时间字符串 yyMMddHHmmss
      */
-    public static String getShortTimestamp() {
+    public static String getShortTimestamp( String pattern) {
         Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
         LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Shanghai")).toLocalDateTime();
-        return localDateTime.format(DateTimeFormatter.ofPattern("yyMMddHHmmss"));
+        return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
 
     // 辅助类：封装文件列表给剪贴板
