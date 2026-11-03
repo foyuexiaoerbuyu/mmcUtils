@@ -1548,12 +1548,11 @@ public class WinUtils {
     /**
      * 读取剪贴板→生成文件→文件入剪贴板
      *
-     * @return
+     * @return 文件路径
      */
     public static String clipboardToFile() {
         String filePath = WinUtils.getDownloads() + File.separator + getShortTimestamp("yyMMddHHmmss") + "_剪贴板转文件缓存" + ".txt";
-        clipboardToFile(filePath);
-        return filePath;
+        return  clipboardToFile(filePath);
     }
 
     /**
