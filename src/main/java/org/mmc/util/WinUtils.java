@@ -337,15 +337,27 @@ public class WinUtils {
     }
 
     /**
-     * 根据剪切板生成文件
+     * 根据剪切板生成文件到特定文件
+     *
+     * @param filePath 生成文件所在文件全路径
+     * @return 文件路径
+     */
+    public static void sysClipboardTextToFile(String filePath) {
+        String text = WinUtils.getSysClipboardText();
+        FileUtils.writeFile(filePath, text);
+        WinUtils.sysClipboardTextToFile(filePath);
+
+    }
+    /**
+     * 根据剪切板生成文件到特定文件夹
      *
      * @param fileDir 生成文件所在文件夹
+     * @return 文件路径
      */
-    public static void sysClipboardTextToFile(String fileDir) {
+    public static String sysClipboardTextToFileDir(String fileDir) {
         String sysClipboardText = WinUtils.getSysClipboardText();
         if (sysClipboardText.isEmpty()) {
-            System.out.println("剪切板内容为空或不是文本内容");
-            return;
+            throw new IllegalArgumentException("剪切板内容为空或不是文本内容");
         }
         String fileNmae = System.currentTimeMillis() + ".txt";
         if (sysClipboardText.contains("enum ") && sysClipboardText.contains("{")) {
@@ -369,6 +381,7 @@ public class WinUtils {
         String filePath = fileDir + fileNmae;
         FileUtils.writeFile(filePath, sysClipboardText);
         WinUtils.copyFileToClipboard(new File(filePath));
+        return filePath;
     }
 
     /**
